@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <!-- Bootstrap css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <!--蓝鲸提供的公用样式库 -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk_pack.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
+    <!-- 数据埋点统计 -->
+    <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script>
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/html5shiv.min.js"></script><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/respond.min.js"></script><![endif]-->
+</head>
+
+<body class="bg-white" data-bg-color="bg-white">
+<div class="king-page-box">
+    <div class="king-layout1-main clearfix">
+        <!-- sidebar start -->
+        <div class="king-layout1-sidebar" style="width:200px;">
+            <nav style="overflow:hidden;">
+                <div class="king-vertical-nav9   m0 f16">
+                    <div class="navbar-collapse navbar-hov">
+                        <ul class="nav navbar-nav side-nav">
+                            <li class="active">
+                                <a href="javascript:void(0);"> <i class="fa fa-dashboard ">                            </i>
+                                    <span>个人空间</span> <i class="fa fa-fw "></i> </a>
+                                <ul class="collapse" id="demo"> </ul>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8080/pages/blogList.html" target = "center"> <i class="fa fa-wrench ">                            </i>
+                                    <span>我的博客</span> <i class="fa fa-fw "></i> </a>
+                                <ul class="collapse" id="demo"> </ul>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8080/pages/albumList.html" target = "center"> <i class="fa fa-wrench ">                            </i>
+                                    <span>我的相册</span> <i class="fa fa-fw "></i> </a>
+                                <ul class="collapse" id="demo"> </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"> <i class="fa fa-ellipsis-h ">                            </i>
+                                    <span>个人信息</span> <i class="fa fa-fw "></i> </a>
+                                <ul class="collapse" id="demo"> </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"> <i class="fa fa-wrench ">                            </i>
+                                    <span>我的关注</span> <i class="fa fa-fw "></i> </a>
+                                <ul class="collapse" id="demo"> </ul>
+                            </li>
+                            <!--下拉菜单的添加
+                            <li>
+                                <a href="javascript:void(0);"> <i class="fa fa-arrows-v ">                            </i>
+                                    <span>下拉菜单</span> <i class="fa fa-fw fa-caret-down"></i> </a>
+                                <ul class="collapse" id="demo">
+                                    <li><a href="javascript:void(0);">子菜单1</a></li>
+                                    <li><a href="javascript:void(0);">子菜单2</a></li>
+                                </ul>
+                            </li>
+                            -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- sidebar end -->
+</div>
+<script>
+    $(function(){
+        var li = $('.navbar-nav li');
+        li.each(function(){
+            $(this).click(function(){
+                if( $(this).hasClass('opens') && $(this).find('ul li').length !=0){
+                    $(this).find('ul').slideUp(250);
+                    $(this).removeClass('opens');
+                }else if($(this).find('ul li').length !=0){
+                    $(this).find('ul').slideDown(250);
+                    $(this).addClass('opens');
+                    $(this).siblings('li').removeClass('opens').find('ul').slideUp();
+                }
+            });
+        });
+    })
+</script>
+<script>
+    $(function(){
+        var li = $('.navbar-nav li');
+        li.each(function(){
+            $(this).click(function(){
+                if( $(this).hasClass('opens')){
+                    $(this).find('ul').slideUp(350);
+                    $(this).removeClass('opens');
+                }else{
+                    $(this).find('ul').slideDown(350);
+                    $(this).addClass('opens');
+                }
+            })
+        });
+    })
+</script>
+<script>
+    $(function(){
+        function renderTpl(str, cfg) {
+            var re = /(#(.+?)#)/g;
+
+            return str.replace(re, function() {
+                var val = cfg[arguments[2]]+'';
+                if(typeof val == 'undefined') {
+                    val = '';
+                }
+                return val;
+            });
+        }
+
+        // 异步请求后台数据
+        $.ajax({
+            url: 'https://magicbox.bk.tencent.com/static_api/v3/components/table7/data.json',
+            type: 'GET',
+            success: function(res){
+                var _html = ' ';
+                var list = res.items;
+                var tpl = $('#tpl_15928286909392').html();
+                var headerTpl =  $('#header_tpl_15928286909392').html();
+                for (var i=0,len=list.length; i < len; i++){
+                    var item = list[i];
+                    _html += renderTpl(tpl, item)
+                }
+                $('.ranger-box2 tbody').html(_html);
+                $('.ranger-box2 thead').html(renderTpl(headerTpl,res.catalogues));
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
+

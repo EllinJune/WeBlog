@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+    <!-- Bootstrap css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <!--蓝鲸提供的公用样式库 -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk_pack.css" rel="stylesheet">
+
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css-pro/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bk-icon-2.0/iconfont.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css-pro/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bk-icon-2.0/iconfont.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css-pro/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bk-icon-2.0/iconfont.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/echarts-2.0/echarts-all.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
+    <!-- 数据埋点统计 -->
+    <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script>
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/html5shiv.min.js"></script><script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/respond.min.js"></script><![endif]-->
+</head>
+<body>
+<!--或许可以用属性图来表示博客列表，看到有树形图的部件-->
+<div class="king-content-wrap">
+    <div class="king-layout1-content" style="margin-left: 0px;">
+        <div class="panel king-panel1 mb0 ml0 ">
+            <div class="panel-heading king-panel-head1 king-panel-top5">
+                <h3 class="panel-title">我的博文</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table mb0 pr15 ranger-box2  ">
+                    <thead>
+                    <tr>
+                        <th style="width: 70px;">#</th>
+                        <th style="width: 15%;">博文标题</th>
+                        <th style="width: 15%;">发表日期</th>
+                        <th style="width: 15%;">分类</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 70px;">1</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">2</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">3</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">4</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">5</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px;">6</td>
+                        <td style="width: 15%;">Ravi Kumar</td>
+                        <td style="width: 15%;">23/12/2012</td>
+                        <td style="width: 15%;">Paid</td>
+                        <td>
+                            <a title="向左箭头" class="bk-icon-button bk-info bk-button-small" href="http://localhost:8080/pages/blog.html" target = "main" >
+                                <i class="bk-icon icon-angle-left"></i>
+                                <i class="bk-text">查看</i>
+                            </a>
+
+                            <button title="配置" class="bk-icon-button bk-warning">
+                                <i class="bk-icon icon-cog"></i>
+                                <i class="bk-text">修改</i>
+                            </button>
+                            <a title="关闭" class="bk-icon-button bk-danger">
+                                <i class="bk-icon icon-close"></i>
+                                <i class="bk-text">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <template id="header_tpl_15928286909392">
+                    <tr>
+                        <th style="width: 70px;">#index#</th>
+                        <th style="width: 15%;">#name#</th>
+                        <th style="width: 15%;">#position#</th>
+                        <th style="width: 15%;">#date#</th>
+                        <th style="width: 15%;">#type#</th>
+                        <th>操作</th>
+                    </tr>
+                </template>
+                <template id="tpl_15928286909392">
+                    <tr>
+                        <td style="width: 70px;">#index#</td>
+                        <td style="width: 15%;">#name#</td>
+                        <td style="width: 15%;">#position#</td>
+                        <td style="width: 15%;">#date#</td>
+                        <td style="width: 15%;">#type#</td>
+                        <td>
+                            <button class="btn btn-xs btn-success"> <i class="glyphicon glyphicon-ok"></i> </button>
+                            <button class="btn btn-xs btn-warning"> <i class="glyphicon glyphicon-edit"></i> </button>
+                            <button class="btn btn-xs btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button>
+                        </td>
+                    </tr>
+                </template>
+                <!-- 设置面板End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content end -->
+</body>
+</html>

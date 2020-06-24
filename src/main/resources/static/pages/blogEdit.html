@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="editor1_demo1" style="width:100%">
+    <table cellspacing="4" cellpadding="0" class="k-widget k-editor k-header k-editor-widget" role="presentation" style="width: 99%; height: 280px;">
+        <tbody>
+        <tr role="presentation">
+            <td class="k-editor-toolbar-wrap" role="presentation">
+                <ul class="k-editor-toolbar" role="toolbar" aria-controls="editor" data-role="editortoolbar">
+                    <li class="k-tool-group" role="presentation"><span class="k-editor-dropdown k-group-start k-group-end"><span title="Format" style="width: 110px;" class="k-widget k-dropdown k-header k-editor-widget" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="" aria-disabled="false" aria-readonly="false" aria-busy="false"><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input">格式化</span>
+                            <span
+                                    unselectable="on" class="k-select"><span unselectable="on" class="k-icon k-i-arrow-s">select</span></span>
+                                </span>
+                                <select title="Format" class="k-formatting k-decorated" data-role="selectbox" unselectable="on" style="width: 110px; display: none;">
+                                    <option value="p">Paragraph</option>
+                                    <option value="blockquote">Quotation</option>
+                                    <option value="h1">Heading 1</option>
+                                    <option value="h2">Heading 2</option>
+                                    <option value="h3">Heading 3</option>
+                                    <option value="h4">Heading 4</option>
+                                    <option value="h5">Heading 5</option>
+                                    <option value="h6">Heading 6</option>
+                                </select>
+                                </span>
+                                </span>
+                    </li>
+                    <li class="k-tool-group k-button-group" role="presentation"><a href="" role="button" class="k-tool k-group-start" unselectable="on" title="粗体" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-bold"></span><span class="k-tool-text">Bold</span></a><a href="" role="button"
+                                                                                                                                                                                                                                                                                              class="k-tool" unselectable="on" title="斜体" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-italic"></span><span class="k-tool-text">Italic</span></a><a href="" role="button" class="k-tool k-group-end" unselectable="on"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                         title="下划线" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-underline"></span><span class="k-tool-text">Underline</span></a></li>
+                    <li class="k-tool-group k-button-group" role="presentation"><a href="" role="button" class="k-tool k-group-start" unselectable="on" title="左对齐" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-justifyLeft"></span><span class="k-tool-text">Justify Left</span></a><a href=""
+                                                                                                                                                                                                                                                                                                              role="button" class="k-tool" unselectable="on" title="居中" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-justifyCenter"></span><span class="k-tool-text">Justify Center</span></a><a href="" role="button" class="k-tool k-group-end"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      unselectable="on" title="右对齐" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-justifyRight"></span><span class="k-tool-text">Justify Right</span></a></li>
+                    <li class="k-tool-group k-button-group" role="presentation"><a href="" role="button" class="k-tool k-group-start" unselectable="on" title="插入无序列表" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-insertUnorderedList"></span><span class="k-tool-text">Insert unordered list</span></a>
+                        <a
+                                href="" role="button" class="k-tool" unselectable="on" title="插入有序列表" aria-pressed="false"><span unselectable="on" class="k-tool-icon k-insertOrderedList"></span><span class="k-tool-text">Insert ordered list</span></a><a href="" role="button" class="k-tool k-group-end" unselectable="on" title="增加缩进"><span unselectable="on" class="k-tool-icon k-indent"></span><span class="k-tool-text">Indent</span></a>
+                        <a
+                                href="" role="button" class="k-tool k-group-end k-state-disabled" unselectable="on" title="减少缩进"><span unselectable="on" class="k-tool-icon k-outdent"></span><span class="k-tool-text">Outdent</span></a>
+                    </li>
+                    <li class="k-tool-group k-button-group" role="presentation"><a href="" role="button" class="k-tool k-group-start" unselectable="on" title="插入链接"><span unselectable="on" class="k-tool-icon k-createLink"></span><span class="k-tool-text">Create Link</span></a><a href="" role="button" class="k-tool k-state-disabled"
+                                                                                                                                                                                                                                                                                        unselectable="on" title="移除链接"><span unselectable="on" class="k-tool-icon k-unlink"></span><span class="k-tool-text">Remove Link</span></a>
+                        <a href="" role="button" class="k-tool k-group-end" unselectable="on" title="插入图片"><span unselectable="on" class="k-tool-icon k-insertImage"></span><span class="k-tool-text">Insert Image</span></a>
+                    </li>
+                    <li class="k-tool-group k-button-group" role="presentation"><a href="" role="button" class="k-tool k-group-start k-group-end" data-popup="" unselectable="on" title="创建表格"><span unselectable="on" class="k-tool-icon k-createTable"></span><span class="k-tool-text">Create table</span></a>
+                        <a
+                                href="" role="button" class="k-tool k-state-disabled" unselectable="on" title="左侧添加列"><span unselectable="on" class="k-tool-icon k-addColumnLeft"></span><span class="k-tool-text">Add column on the left</span></a><a href="" role="button" class="k-tool k-state-disabled" unselectable="on" title="右侧添加列"><span unselectable="on" class="k-tool-icon k-addColumnRight"></span><span class="k-tool-text">Add column on the right</span></a>
+                        <a
+                                href="" role="button" class="k-tool k-state-disabled" unselectable="on" title="上方添加行"><span unselectable="on" class="k-tool-icon k-addRowAbove"></span><span class="k-tool-text">Add row above</span></a><a href="" role="button" class="k-tool k-state-disabled" unselectable="on" title="下方添加行"><span unselectable="on" class="k-tool-icon k-addRowBelow"></span><span class="k-tool-text">Add row below</span></a>
+                        <a
+                                href="" role="button" class="k-tool k-state-disabled" unselectable="on" title="删除行"><span unselectable="on" class="k-tool-icon k-deleteRow"></span><span class="k-tool-text">Delete row</span></a>
+                        <a href="" role="button" class="k-tool k-group-end k-state-disabled" unselectable="on" title="删除列"><span unselectable="on" class="k-tool-icon k-deleteColumn"></span><span class="k-tool-text">Delete column</span></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td class="k-editable-area">
+                <iframe title="Editable area. Press F10 for toolbar." frameborder="0" class="k-content" src="javascript:&quot;&quot;"></iframe>
+                <textarea id="editor" rows="10" cols="30" style="height: 280px; width: 99%; margin: 0px auto; display: none;" data-role="editor" autocomplete="off" class="k-content k-raw-content"></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="mt10" id="btns">
+        <button type="button" name="getHtml" class="king-btn king-default">获取html</button>
+        <button type="button" name="setHtml" class="king-btn king-default">设置html</button>
+        <button type="button" name="insertHtml" class="king-btn king-default">插入html</button>
+    </p>
+</div>
+<script type="text/javascript">
+    $("#editor").kendoEditor();
+
+    $('#btns').on('click', 'button', function (e) {
+        var editor = $("#editor").data('kendoEditor');
+        var action = $(e.target).attr('name');
+
+        switch (action) {
+            // 获取htmlt
+            case 'getHtml':
+                alert(editor.value());
+                break;
+            // 设置html
+            case 'setHtml':
+                editor.value('<h4>设置html</h4>');
+                break;
+            // 插入html
+            case 'insertHtml':
+                editor.body.appendChild(editor.document.createTextNode("hello,World"));
+                break;
+        }
+    });
+</script>
+</body>
+</html>

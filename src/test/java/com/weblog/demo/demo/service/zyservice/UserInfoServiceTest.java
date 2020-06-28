@@ -1,4 +1,4 @@
-package com.weblog.demo.demo.mapper.zymapper;
+package com.weblog.demo.demo.service.zyservice;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -6,28 +6,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-class UserInfoMapperTest {
+class UserInfoServiceTest {
     @Resource
-    private UserInfoMapper userInfoMapper;
+    private UserInfoService userInfoService;
     @Test
-    void findAll() {
-        List<Map<String,Object>> list=userInfoMapper.findAll();
-        System.out.println(list);
-    }
-
-    @Test
-    void save() {
-        //使用map集合存放数据
-        //#{user.id},#{user.name},#{user.pwd},#{user.profilephoto}," +
-        //            "#{user.regtime},#{user.birthday},#{user.sex},#{user.age}," +
-        //            "#{user.right}
+    void doSave() {
         Map<String,String> map=new HashMap<>();
         map.put("name","王老师");
         map.put("pwd","121");
@@ -37,33 +29,20 @@ class UserInfoMapperTest {
         map.put("sex","男");
         map.put("age","22");
         map.put("right","0");
-        int n=userInfoMapper.save(map);
-        System.out.println(n);
+        userInfoService.doSave(map);
     }
 
     @Test
-    void findById() {
-        Map<String,Object> map=userInfoMapper.findById(3);
-        System.out.println(map);
-    }
-
-    @Test
-    void findByName() {
-        List<Map<String,Object>> list=userInfoMapper.findByName("马老师");
-        System.out.println(list);
-    }
-
-    @Test
-    void delete() {
+    void doDelete() {
         Map<String,String> map=new HashMap<>();
-        map.put("id","4");
-        int n=userInfoMapper.delete(4);
+        map.put("id","5");
+        userInfoService.doDelete(map);
     }
 
     @Test
-    void update() {
+    void doUpdate() {
         Map<String,String> map=new HashMap<>();
-        map.put("id","3");
+        map.put("id","2");
         map.put("name","王老师");
         map.put("pwd","111");
         map.put("profilephoto","zbd");
@@ -72,7 +51,22 @@ class UserInfoMapperTest {
         map.put("sex","女");
         map.put("age","22");
         map.put("right","0");
-        int n=userInfoMapper.update(map);
-        System.out.println(n);
+        userInfoService.doUpdate(map);
+    }
+
+    @Test
+    void findById() {
+        Map<String,String> map=new HashMap<>();
+        map.put("id","2");
+        Map<String,Object> tea=userInfoService.findById(map);
+        System.out.println(tea);
+    }
+
+    @Test
+    void findByName() {
+        Map<String,String> map=new HashMap<>();
+        map.put("name","王老师");
+        List<Map<String,Object>> userset=userInfoService.findByName(map);
+        System.out.println(userset);
     }
 }

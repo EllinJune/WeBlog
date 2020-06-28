@@ -52,4 +52,27 @@ class UserInfoMapperTest {
         List<Map<String,Object>> list=userInfoMapper.findByName("马老师");
         System.out.println(list);
     }
+
+    @Test
+    void delete() {
+        Map<String,String> map=new HashMap<>();
+        map.put("id","4");
+        int n=userInfoMapper.delete(4);
+    }
+
+    @Test
+    void update() {
+        Map<String,String> map=new HashMap<>();
+        map.put("id","3");
+        map.put("name","王老师");
+        map.put("pwd","111");
+        map.put("profilephoto","zbd");
+        map.put("regtime","2018-9-9 18:00:00");
+        map.put("birthday","2000-9-9");
+        map.put("sex","女");
+        map.put("age","22");
+        map.put("right","0");
+        int n=userInfoMapper.update(map);
+        System.out.println(n);
+    }
 }

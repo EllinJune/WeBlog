@@ -21,9 +21,18 @@ public interface UserFriMapper {
     @Delete("delete from user_friends where user_id =#{uid} and user_friends_id =#{fid}")
     public int delete(@Param("uid") int userid,@Param("fid") int friid);
 
+    //一对一修改备注和状态
     @Update("update user_friends " +
             " set user_id=#{user.id},user_friends_id=#{user.friendsid}," +
-            "user_note=#{user.note},user_status=#{user.status}" +
+            "user_note=#{user.note}" +
             " where user_id=#{user.id} and user_friends_id =#{user.friendsid}")
-    public int update(@Param("user") Map<String,String> user);
+    public int updatenote(@Param("user") Map<String,String> user);
+
+    @Update("update user_friends " +
+            " set user_id=#{user.id},user_friends_id=#{user.friendsid}," +
+            "user_status=#{user.status}" +
+            " where user_id=#{user.id} and user_friends_id =#{user.friendsid}")
+    public int updatestatus(@Param("user") Map<String,String> user);
+
+
 }

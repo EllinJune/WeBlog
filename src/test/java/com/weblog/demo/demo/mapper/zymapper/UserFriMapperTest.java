@@ -40,13 +40,22 @@ class UserFriMapperTest {
     }
 
     @Test
-    void update() {
+    void updatenote() {
         Map<String,String> map=new HashMap<>();
         map.put("id","1");
         map.put("friendsid","2");
-        map.put("note","nmsl");
-        map.put("status","0");
-        int n=userFriMapper.update(map);
+        map.put("note","nmslzd");
+        int n=userFriMapper.updatenote(map);
+        System.out.println(n);
+    }
+
+    @Test
+    void updatestatus() {
+        Map<String,String> map=new HashMap<>();
+        map.put("id","1");
+        map.put("friendsid","2");
+        map.put("status","1");
+        int n=userFriMapper.updatestatus(map);
         System.out.println(n);
     }
 }

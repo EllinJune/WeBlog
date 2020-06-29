@@ -18,8 +18,8 @@ public interface UserFriMapper {
     public int save(@Param("user") Map<String,String> map);
 
     //用户id和好友id来删除id
-    @Delete("delete from user_friends where user_id =#{uid} and user_friends_id =#{fid}")
-    public int delete(@Param("uid") int userid,@Param("fid") int friid);
+    //@Delete("delete from user_friends where user_id =#{uid} and user_friends_id =#{fid}")
+    //public int delete(@Param("uid") int userid,@Param("fid") int friid);
 
     //一对一修改备注和状态
     @Update("update user_friends " +

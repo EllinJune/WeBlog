@@ -1,5 +1,6 @@
 package com.weblog.demo.demo.mapper.zymapper;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,6 +19,9 @@ class UserFriMapperTest {
     private UserFriMapper userFriMapper;
     @Test
     void findFriByid() {
+        List<Map<String,Object>> friset=null;
+        friset=userFriMapper.findFriByid(2);
+        System.out.println(friset);
     }
 
     @Test
@@ -32,12 +37,12 @@ class UserFriMapperTest {
         System.out.println(n);
     }
 
-    @Test
-    void delete() {
-        int n=userFriMapper.delete(2,3);
-        System.out.println(n);
-
-    }
+//    @Test
+//    void delete() {
+//        int n=userFriMapper.delete(2,3);
+//        System.out.println(n);
+//
+//    }
 
     @Test
     void updatenote() {

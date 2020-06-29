@@ -12,6 +12,11 @@ public class UserFriService {
     @Resource
     private UserFriMapper userFriMapper;
 
+    /**
+     * 添加好友
+     * @param map
+     * @return boolean
+     */
     public boolean doSave(Map<String,String> map){
         boolean flag=false;
         //选择要添加监控的代码
@@ -27,6 +32,12 @@ public class UserFriService {
         }
         return flag;
     }
+
+    /**
+     * 删除或恢复好友
+     * @param map
+     * @return boolean
+     */
     public boolean doUpdateStatus(Map<String,String> map){
         boolean flag=false;
         try {
@@ -40,6 +51,12 @@ public class UserFriService {
         }
         return flag;
     }
+
+    /**
+     * 更改备注
+     * @param map
+     * @return boolean
+     */
     public boolean doUpdateNote(Map<String,String> map){
         boolean flag=false;
         try {
@@ -52,6 +69,12 @@ public class UserFriService {
         }
         return flag;
     }
+
+    /**
+     * 通过id查询所有好友
+     * @param map
+     * @return boolean
+     */
     public  List<Map<String,Object>> findFriByid(Map<String,String> map){
         List<Map<String,Object>> friset=null;
         try {

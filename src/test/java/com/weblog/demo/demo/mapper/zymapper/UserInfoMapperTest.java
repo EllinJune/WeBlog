@@ -49,7 +49,7 @@ class UserInfoMapperTest {
 
     @Test
     void findByName() {
-        List<Map<String,Object>> list=userInfoMapper.findByName("马老师");
+        Map<String,Object> list=userInfoMapper.findByName("张老师");
         System.out.println(list);
     }
 
@@ -73,6 +73,15 @@ class UserInfoMapperTest {
         map.put("age","22");
         map.put("right","0");
         int n=userInfoMapper.update(map);
+        System.out.println(n);
+    }
+
+    @Test
+    void login() {
+        Map<String,String> map=new HashMap<>();
+        map.put("name","张老师");
+        map.put("pwd","111");
+        Map<String,Object> n = userInfoMapper.Login(map);
         System.out.println(n);
     }
 }

@@ -65,8 +65,17 @@ class UserInfoServiceTest {
     @Test
     void findByName() {
         Map<String,String> map=new HashMap<>();
-        map.put("name","王老师");
-        List<Map<String,Object>> userset=userInfoService.findByName(map);
+        map.put("name","老师");
+        Map<String,Object> userset=userInfoService.findByName(map);
         System.out.println(userset);
+    }
+
+    @Test
+    void login() {
+        Map<String,String> map=new HashMap<>();
+        map.put("name","张老师");
+        map.put("pwd","111");
+        Map<String,Object> n = userInfoService.Login(map);
+        System.out.println(n);
     }
 }

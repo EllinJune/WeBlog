@@ -88,18 +88,33 @@ public class UserInfoService {
     }
 
     /**
-     * 通过name查找用户，返回用户list，搜索好友时使用
+     * 通过name查找用户，搜索好友时使用
      * @param map
      * @return List<Map<String,Object>>
      */
-    public List<Map<String,Object>> findByName(Map<String,String> map){
-        List<Map<String,Object>> userset=null;
+    public Map<String,Object> findByName(Map<String,String> map){
+        Map<String,Object> user=null;
         try {
             String name=map.get("name");
-            userset = userInfoMapper.findByName(name);
+            user = userInfoMapper.findByName(name);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return userset;
+        return user;
+    }
+
+    /**
+     * 登录验证
+     * @param map
+     * @return
+     */
+    public Map<String,Object> Login(Map<String,String> map){
+        Map<String,Object> user=null;
+        try {
+            user = userInfoMapper.Login(map);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

@@ -30,7 +30,7 @@ public interface UserInfoMapper {
      * @return List
      */
     @Select("select * from users where user_name = #{name}")
-    public List<Map<String,Object>> findByName(String name);
+    public Map<String,Object> findByName(String name);
 
     /**
      * 用户注册
@@ -59,9 +59,19 @@ public interface UserInfoMapper {
      * @return int
      */
     @Update("update users " +
-            " set user_name=#{user.name},user_pwd=#{user.pwd},user_profile_photo=#{user.profilephoto}," +
+            " set user_pwd=#{user.pwd},user_profile_photo=#{user.profilephoto}," +
             "user_reg_time=#{user.regtime},user_birthday=#{user.birthday},user_sex=#{user.sex}," +
             "user_age=#{user.age},user_right=#{user.right}" +
-            " where user_id=#{user.id}")
+            " where user_name=#{user.name}")
     public int update(@Param("user") Map<String,String> user);
+
+    /**
+     * 登录验证
+     * @param map
+     * @return
+     */
+    @Select("select * from users"+
+            " where user_pwd = #{t.pwd}"+
+            " and user_name = #{t.name}")
+    public Map<String,Object> Login(@Param("t") Map<String,String> map);
 }

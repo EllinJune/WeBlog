@@ -56,7 +56,7 @@ public class ArticleService {
     public boolean findById(int id){
         boolean flag=false;
         try {
-            flag=articleMapper.findById(id);
+          //  flag=articleMapper.findById(id);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }

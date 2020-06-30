@@ -8,32 +8,34 @@ import java.util.Map;
 @Mapper
 public interface ArticleLableSetMapper {
 
-    @Select("select * from comments")
+    @Select("select * from article_lable_set")
     public List<Map<String,Object>> findAll();
 
     /**
      * #{id} 表示一个占位符，用于通过变量赋值
-     * @param id
+     * @param artid
      * @return
      *
      */
-    @Select("select * from comments where article_id=#{n}")
-    public List<Map<String,Object>> findById(int id);
+    @Select("select * from article_lable_set where article_id=#{n}")
+    public List<Map<String,Object>> findByArtid(int artid);
 
+    @Select("select * from article_lable_set where lable_id=#{n}")
+    public List<Map<String,Object>> findByLabid(int labid);
     //将来数据来自页面，都是string类型
 
     /**
      * @Param("cmt") 表示参数的别名，在sql语句中使用
-     * @param addcmt
+     * @param addlabset
      * @return
      *  Map<String, String> map=new HashMap<>();
      *  map.put("name","张老师");
      *  map.put("sex","男");
      *  map.put("no","10006");
      */
-    @Insert("insert into comments(user_id,article_id,comment_like_count,comment_date,comment_content)" +
-            "value(#{cmt.uid},#{cmt.artid},#{cmt.likecount},#{cmt.date},#{cmt.content})")
-    public int addCmt(@Param("cmt") Map<String,String> addcmt);
+    @Insert("insert into article_lable_set(article_id,lable_id)" +
+            "value(#{artlab.artid},#{artlab.labid})")
+    public int addLabSet(@Param("artlab") Map<String,String> addlabset);
 
     /**
      * 根据用户的id修改用户的名称和编号
@@ -41,17 +43,20 @@ public interface ArticleLableSetMapper {
      * 只要传递多个参数的都可以使用map集合进行封装，可以减少方法的参数个数
      */
 
-    @Update("update comments " +
-            " set user_id=#{t.uid},article_id=#{t.artid},comment_like_count=#{t.likecount},comment_date=#{t.date},comment_content=#{t.content}" +
-            " where comment_id=#{t.id}")
-    public int update(@Param("t") Map<String,String> cmt);
+    @Update("update article_lable_set " +
+            " set lable_id=#{t.labid}" +
+            " where article_id=#{t.artid}")
+    public int update(@Param("t") Map<String,String> labset);
 
     /**
      * #{id} 习惯写法
-     * @param id
+     * @param artid
      * @return
      */
-    @Delete("delete from comments where comment_id=#{id}")
-    public int delete(int id);
+    @Delete("delete from article_lable_set where article_id=#{id}")
+    public int deleteArt(int artid);
+
+    @Delete("delete from article_lable_set where lable_id=#{id}")
+    public int deleteLab(int labid);
 
 }

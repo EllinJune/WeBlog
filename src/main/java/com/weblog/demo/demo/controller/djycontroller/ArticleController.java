@@ -48,13 +48,13 @@ public class ArticleController {
         }
         return msg;
     }
-    @RequestMapping("/findbyid")
-    public String findById(@RequestParam int id){
-        String msg="修改失败";
-        boolean flag=articleService.findById(id);
-        if(flag){
-            msg="修改成功";
-        }
-        return msg;
-    }
+//    @RequestMapping("/findbyid")
+//    public String findById(@RequestParam int id){
+//        String msg="修改失败";
+//        boolean flag=articleService.findById(id);
+//        if(flag){
+//            msg="修改成功";
+//        }
+//        return msg;
+//    }
 }

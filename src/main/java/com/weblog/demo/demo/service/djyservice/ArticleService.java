@@ -53,13 +53,13 @@ public class ArticleService {
         }
         return flag;
     }
-    public boolean findById(int id){
-        boolean flag=false;
-        try {
-            flag=articleMapper.findById(id);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
+//    public boolean findById(int id){
+//        boolean flag=false;
+//        try {
+//            flag=articleMapper.findById(id);
+//        } catch (NumberFormatException e) {
+//            e.printStackTrace();
+//        }
+//        return flag;
+//    }
 }

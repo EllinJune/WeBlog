@@ -39,18 +39,14 @@
                 <!--错误信息提示-->
                 <div class="inp" style="margin-top: 0">
                     <label>
-                        <input class="inp-input" data-block="true" type="text" data-required="请输入用户名或者邮箱" id="user_name"
-                            name="user_name" placeholder="用户名或者邮箱" />
+                        <input class="inp-input" data-block="true" type="text" data-required="请输入用户名" id="user_name"
+                            name="user_name" placeholder="用户名" />
                     </label>
                 </div>
                 <div class="inp"><label><input class="inp-input" data-block="true" type="password" data-required="请输入密码"
                             id="pwd" name="pwd" placeholder="密码" /></label>
                 </div>
-                <div class="inp"><label><input class="inp-input" data-block="true" type="text" id="code" name="code"
-                            data-required="请输入验证码" placeholder="输入验证码" /></label></div>
-                <div class="code-box" style="cursor: pointer;"><img id="code_img" src="../img/verify-code.png" alt="" />
-                </div>
-                <button id="login" type="submit" class="login">登录</button>
+                <button id="login" type="button" class="login">登录</button>
                 <div id="bottom">
                     <a href="index.html" id="registeredtxt">回到首页</a>
                     <a href="forget-pwd.html" id="forgotpassword" onclick="">忘记密码</a>
@@ -81,42 +77,62 @@
     <script type="text/javascript" src="../js/verJs.js"></script>
     <script type="text/javascript" src="../js/login.js"></script>
     <script type="text/javascript">
-        $("#code_img").click(function () {
+        // $("#code_img").click(function () {
+        //
+        // });
+        //
+        // const verJs_login = new VerJs({
+        //     form: "#landing-content",
+        //     success: function (data) {
+        //         data = JSON.parse(data);
+        //         console.log(data);
+        //     },
+        //     fail: function (data) {
+        //         console.log(data);
+        //     }
+        // });
+        //
+        // $(".git-icon").mouseenter(function (e) {
+        //     $(".tips").stop(true).slideToggle(300);
+        // });
+        //
+        // $(".git-icon").mouseleave(function (e) {
+        //     $(".tips").stop(true).slideToggle(300);
+        // });
+        //
+        // function github_login() {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: '',
+        //         dataType: 'JSON',
+        //         success: function (data) {
+        //             console.log(data);
+        //         },
+        //         error: function (data) {
+        //             console.log(data);
+        //         }
+        //     });
+        // }
+        jQuery(function(){
+            jQuery("#login").click(function(){
 
-        });
+                var name=jQuery("#user_name").val();
+                var pwd=jQuery("#pwd").val();
+                jQuery.post("/login",{"name":name,"pwd":pwd},function(rst) {
+                    if(rst=="登录成功"){
+                        window.location.href="index.html";
+                    }
+                    else {
+                        alert(rst);
+                    }
 
-        const verJs_login = new VerJs({
-            form: "#landing-content",
-            success: function (data) {
-                data = JSON.parse(data);
-                console.log(data);
-            },
-            fail: function (data) {
-                console.log(data);
-            }
-        });
-
-        $(".git-icon").mouseenter(function (e) {
-            $(".tips").stop(true).slideToggle(300);
-        });
-
-        $(".git-icon").mouseleave(function (e) {
-            $(".tips").stop(true).slideToggle(300);
-        });
-
-        function github_login() {
-            $.ajax({
-                type: 'GET',
-                url: '',
-                dataType: 'JSON',
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (data) {
-                    console.log(data);
-                }
+                    //  ,"json"})如果后台返回的而是集合或者对象 必须指明响应数据的格式为json
+                    // #{user.name},#{user.pwd},#{user.profilephoto}," +
+                    // "#{user.regtime},#{user.birthday},#{user.sex},#{user.age}," +
+                    // "#{user.right
+                });
             });
-        }
+        });
     </script>
 </body>
 

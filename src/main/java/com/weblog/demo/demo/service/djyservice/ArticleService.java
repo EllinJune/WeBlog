@@ -62,4 +62,28 @@ public class ArticleService {
         }
         return flag;
     }
+    public boolean doSaveComment(Map<String,String> map){
+        boolean flag=false;
+        try {
+            int r= articleMapper.saveComment(map);
+            if(r>0){
+                flag=true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return flag;
+    }
+    public List<Map<String,Object>>  doMessage(){
+        List<Map<String,Object>> list=null;
+        try {
+             list= articleMapper.message();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
 }

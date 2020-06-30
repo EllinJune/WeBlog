@@ -1,4 +1,58 @@
 package com.weblog.demo.demo.mapper.mkmapper;
 
-public class LablesMapper {
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+import java.util.Map;
+
+@Mapper
+public interface LablesMapper {
+
+    @Select("select * from lables")
+    public List<Map<String,Object>> findAll();
+
+    /**
+     * #{id} 表示一个占位符，用于通过变量赋值
+     * @param labid
+     * @return
+     *
+     */
+    @Select("select * from lables where lable_id=#{n}")
+    public Map<String,Object> findByLabid(int labid);
+
+    //将来数据来自页面，都是string类型
+
+    /**
+     * @Param("cmt") 表示参数的别名，在sql语句中使用
+     * @param addlab
+     * @return
+     *  Map<String, String> map=new HashMap<>();
+     *  map.put("name","张老师");
+     *  map.put("sex","男");
+     *  map.put("no","10006");
+     */
+    @Insert("insert into lables(lable_id,lable_name)" +
+            "value(#{lab.id},#{lab.name})")
+    public int addLable(@Param("lab") Map<String,String> addlab);
+
+    /**
+     * 根据用户的id修改用户的名称和编号
+     *
+     * 只要传递多个参数的都可以使用map集合进行封装，可以减少方法的参数个数
+     */
+
+    @Update("update lables " +
+            " set lable_name=#{t.name}" +
+            " where lable_id=#{t.id}")
+    public int update(@Param("t") Map<String,String> lable);
+
+
+    /*
+    * 注意这个方法还有一个bug未解决，当lable_id被其他表使用时，就不能成功删除
+    *
+    *
+    * */
+    @Delete("delete from lables where lable_id=#{id}")
+    public int deleteLab(int labid);
+
 }

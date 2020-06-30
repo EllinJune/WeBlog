@@ -4,6 +4,7 @@ import com.weblog.demo.demo.mapper.zymapper.UserInfoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -108,10 +109,19 @@ public class UserInfoService {
      * @param map
      * @return
      */
-    public Map<String,Object> Login(Map<String,String> map){
-        Map<String,Object> user=null;
+    public Map<String,String> Login(Map<String,String> map){
+        Map<String,String> user=new HashMap<>();
+        Map<String,Object> realuser=null;
         try {
-            user = userInfoMapper.Login(map);
+            realuser = userInfoMapper.Login(map);
+            if(realuser!=null){
+                user.put("name",String.valueOf(realuser.get("user_name")));
+                user.put("pwd",String.valueOf(realuser.get("user_pwd")));
+                user.put("rst","true");
+                user.put("right",String.valueOf(realuser.get("user_right")));
+            }else{
+                user.put("rst","false");
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }

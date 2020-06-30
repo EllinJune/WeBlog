@@ -52,10 +52,10 @@
                 </span>
             </div>
             <div class="nb-a-holder-last">
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="mylogin">
                     <a class="a-login" href="login.html">登录</a>
                 </div>
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="myreg">
                     <a class="a-login" href="register.html">注册</a>
                 </div>
             </div>
@@ -594,6 +594,33 @@
 
         // 图片懒加载
         const lazyImage = new LazyImage('.lazy-image');
+
+        jQuery(function() {
+            if (getCookie("user_info") != "") {
+                // <div class="nb-a-holder-small" id="mylogin">
+                //     <a class="a-login" href="login.html">登录</a>
+                //     </div>
+                //     <div class="nb-a-holder-small" id="myreg">
+                //     <a class="a-login" href="register.html">注册</a>
+                //     </div>
+                var myname = getCookie("user_info");
+                jQuery("#mylogin").html("<a class=\"a-login\" href=\"login.html\">"+myname+"</a>");
+                jQuery("#myreg").html("<a class=\"a-login\" href=\"login.html\">退出</a>");
+
+            }
+
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i].trim();
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            }
+        })
+
     </script>
 </body>
 

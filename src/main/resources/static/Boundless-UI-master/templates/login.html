@@ -119,20 +119,27 @@
                 var name=jQuery("#user_name").val();
                 var pwd=jQuery("#pwd").val();
                 jQuery.post("/login",{"name":name,"pwd":pwd},function(rst) {
-                    if(rst=="登录成功"){
-                        window.location.href="index.html";
+                    if(rst.rst){
+                        alert(rst.right);
+                        var t=rst.right==0?'管理员':'';
+                        var cvalue=t+"【"+rst.name+"】";
+                        setCookie("user_info",cvalue,2);
+                        location.href="index.html";
                     }
                     else {
-                        alert(rst);
+                        alert(rst.rst);
                     }
 
-                    //  ,"json"})如果后台返回的而是集合或者对象 必须指明响应数据的格式为json
-                    // #{user.name},#{user.pwd},#{user.profilephoto}," +
-                    // "#{user.regtime},#{user.birthday},#{user.sex},#{user.age}," +
-                    // "#{user.right
-                });
+                },"json");
             });
-        });
+        })
+        function setCookie(cname,cvalue,exdays)
+        {
+            var d = new Date();
+            d.setTime(d.getTime()+(exdays*24*60*60*1000));
+            var expires = "expires="+d.toGMTString();
+            document.cookie = cname+"="+cvalue+"; "+expires;
+        }
     </script>
 </body>
 

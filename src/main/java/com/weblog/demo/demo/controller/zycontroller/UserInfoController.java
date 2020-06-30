@@ -87,12 +87,8 @@ public class UserInfoController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestParam Map<String,String> map){
-        String msg="登录失败";
-        Map<String,Object> info=userInfoService.Login(map);
-        if(info!=null&&map.size()>0){
-            msg="登录成功";
-        }
+    public Map<String,String> login(@RequestParam Map<String,String> map){
+        Map<String,String> msg = userInfoService.Login(map);
         return msg;
     }
 }

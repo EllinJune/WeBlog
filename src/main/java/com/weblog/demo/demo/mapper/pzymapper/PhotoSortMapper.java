@@ -5,6 +5,10 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 对应photo_Sort表,
+ * 属性：photo_sort_id,photo_sort_name
+ */
 @Mapper
 public interface PhotoSortMapper {
 
@@ -13,8 +17,8 @@ public interface PhotoSortMapper {
      * @param map
      * @return
      */
-    @Insert("insert into photo_sort(photo_sort_name)" +
-            " value(#{sort.name})")
+    @Insert("insert into photo_sort(photo_sort_name,user_id)" +
+            " value(#{sort.name},#{sort.userId})")
     public int save(@Param("sort") Map<String,String> map);
 
 
@@ -34,10 +38,11 @@ public interface PhotoSortMapper {
      * @return
      */
     @Delete("delete from photo_sort" +
-            " where photo_id=#{id}")
+            " where photo_sort_id=#{id}")
     public int delete(int id);
 
-    @Select("select * from  photo_sort")
-    public List<Map<String,Object>> findAll();
+    @Select("select * from  photo_sort" +
+            " where user_id=#{id}")
+    public List<Map<String,Object>> findByUserId(int id);
 
 }

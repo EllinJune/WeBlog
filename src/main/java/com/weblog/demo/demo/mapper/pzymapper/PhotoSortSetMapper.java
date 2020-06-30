@@ -29,7 +29,7 @@ public interface PhotoSortSetMapper {
      * @return
      */
     @Delete("delete from photo_sort_set" +
-            " where photo_id=#{id} and photo_sort_id=#{}")
+            " where photo_id=#{id}")
     public int delete(int id);
 
     /**

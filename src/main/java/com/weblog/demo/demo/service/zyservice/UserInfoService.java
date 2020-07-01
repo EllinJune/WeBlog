@@ -12,6 +12,12 @@ public class UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+
+    /**
+     * 用户注册
+     * @param map
+     * @return
+     */
     public boolean doSave(Map<String,String> map){
         boolean flag=false;
         //选择要添加监控的代码
@@ -27,6 +33,12 @@ public class UserInfoService {
         }
         return flag;
     }
+
+    /**
+     * 删除用户
+     * @param map
+     * @return
+     */
     public boolean doDelete(Map<String,String> map){
         boolean flag=false;
         try {
@@ -40,6 +52,12 @@ public class UserInfoService {
         }
         return flag;
     }
+
+    /**
+     * 更新用户信息
+     * @param map
+     * @return
+     */
     public boolean doUpdate(Map<String,String> map){
         boolean flag=false;
         try {
@@ -52,6 +70,12 @@ public class UserInfoService {
         }
         return flag;
     }
+
+    /**
+     * 通过id查找用户，返回用户信息
+     * @param map
+     * @return Map<String,Object>
+     */
     public Map<String,Object> findById(Map<String,String> map){
         Map<String,Object> tea=null;
         try {
@@ -62,14 +86,35 @@ public class UserInfoService {
         }
         return tea;
     }
-    public List<Map<String,Object>> findByName(Map<String,String> map){
-        List<Map<String,Object>> userset=null;
+
+    /**
+     * 通过name查找用户，搜索好友时使用
+     * @param map
+     * @return List<Map<String,Object>>
+     */
+    public Map<String,Object> findByName(Map<String,String> map){
+        Map<String,Object> user=null;
         try {
             String name=map.get("name");
-            userset = userInfoMapper.findByName(name);
+            user = userInfoMapper.findByName(name);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return userset;
+        return user;
+    }
+
+    /**
+     * 登录验证
+     * @param map
+     * @return
+     */
+    public Map<String,Object> Login(Map<String,String> map){
+        Map<String,Object> user=null;
+        try {
+            user = userInfoMapper.Login(map);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

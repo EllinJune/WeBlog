@@ -56,8 +56,8 @@ class UserInfoMapperTest {
     @Test
     void delete() {
         Map<String,String> map=new HashMap<>();
-        map.put("id","4");
-        int n=userInfoMapper.delete(4);
+        map.put("id","1");
+        int n=userInfoMapper.delete(10);
     }
 
     @Test

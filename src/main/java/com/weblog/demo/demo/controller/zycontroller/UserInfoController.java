@@ -78,7 +78,7 @@ public class UserInfoController {
     /**
      * 通过名称返回map
      * @param map
-     * @return List
+     * @return map
      */
     @RequestMapping("/searchuser")
     public Map<String,Object> searchuser(@RequestParam Map<String,String> map){

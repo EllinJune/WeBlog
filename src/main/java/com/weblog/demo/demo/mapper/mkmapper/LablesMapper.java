@@ -52,6 +52,9 @@ public interface LablesMapper {
     *
     *
     * */
+   @Delete("delete from article_lable_set where lable_id=#{id}")
+    public int deleteLabSet(int labsetid);
+
     @Delete("delete from lables where lable_id=#{id}")
     public int deleteLab(int labid);
 

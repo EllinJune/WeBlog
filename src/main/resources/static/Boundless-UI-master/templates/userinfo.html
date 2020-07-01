@@ -51,7 +51,7 @@
         <!--搜索框-->
         <div class="nb-a-holder" >
 
-                    <select id="selectinfo" style="font-size:17px;" onchange="showChange(this.value);">
+                    <select id="selectinfo" style="font-size:17px;" onchange="showChange(this.value)">
                             <option value ="基本信息">基本信息</option>
                             <option value ="密码修改">密码修改</option>
                             <option value="关注列表">关注列表</option>
@@ -103,48 +103,42 @@
         <!--友情链接-->
         <ul class="link-box"id="user_box">
             <li>
-                <!--<a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>-->
-                <!--<span class="description">致力于分享web编程技术知识</span>-->
+                <div class="form-group">
+                    <label>选择头像：</label>
+                    <div>
+                        <img class="head-img"src="../img/QQ.svg">
+
+                    </div>
+                    <input type="file" class="form-control brandPic" id="brandPic">
+                </div>
+            </li>
+            <li>
                 <a>用户名</a>
                 <input class="inp-input" data-block="true" type="text"disabled="disabled"  id="user_name"
                         placeholder="用户名" />
             </li>
             <li>
-                <!--<a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>-->
-                <!--<span class="description">致力于分享web编程技术知识</span>-->
                 <a>注册时间</a>
                 <input class="inp-input" data-block="fales" type="text" disabled="disabled"
                         placeholder="2000-9-9" />
             </li>
             <li>
-                <!--<a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>-->
-                <!--<span class="description">致力于分享web编程技术知识</span>-->
                 <a>性别</a>
                 <select id="sex_r",name="sex">
                     <option value ="男">男</option>
-                    <option value ="女">女</option>
+                    <option value ="女" selected = "selected">女</option>
                 </select>
             </li>
-            <!--<li>-->
-                <!--<a href="https://wisteria.cangmangai.cn/" target="_blank">Wisteria-简洁优雅的网址导航</a>-->
-                <!--<span class="description">Wisteria-简洁优雅的网址导航，高度自定义，你值得拥有</span>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href="https://hacpai.com/" target="_blank">黑客派</a>-->
-                <!--<span class="description">为未来而构建的开发者社区，找到你所需的技术解决方案、记录和分享我们的程序人生</span>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href="https://www.purelives.cn/" target="_blank">余先生的简单生活</a>-->
-                <!--<span class="description">记录点滴生活</span>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href="https://hailangjiang.top/" target="_blank">浪里个浪</a>-->
-                <!--<span class="description">一个不务正业的程序员</span>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<a href="https://blog.csdn.net/TesuZer" target="_blank">TesuZer的博客</a>-->
-                <!--<span class="description">TesuZer的博客</span>-->
-            <!--</li>-->
+            <li>
+                <a>年龄</a>
+                <input class="inp-input" data-required="年龄"
+                       data-block="true" id="age" name="age" type="text"
+                       placeholder="请输入年龄" />
+            </li>
+            <li>
+                <a>生日</a>
+                <input class="inp-input" id="birthday_r" name="birthday" type="date" placeholder="2000-09-09"/>
+            </li>
         </ul>
     </article>
 </div>
@@ -195,79 +189,6 @@
 
 
 
-    jQuery(function() {
-
-
-
-
-
-
-
-
-        if (getCookie("user_info") != "") {
-            var myname = getCookie("user_info");
-            jQuery("#mylogin").html("<a class=\"a-login\" href=\"login.html\">"+myname+"</a>");
-            jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
-
-        }
-
-        //加载个人信息
-        //页面加载完毕，就去数据库中获取数据
-        //          /all 请求的地址
-    // <li>
-    //     <a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>
-    //         <span class="description">致力于分享web编程技术知识</span>
-    //         </li>
-    });
-    function showChange(cname) {
-
-        var myname = getCookie("user_info");
-        if(cname=="密码修改"){
-            showPwdModel(myname);
-        }
-        else if(cname=="基本信息"){
-            showUserInfo(myname);
-        }
-        else if(cname=="关注列表"){
-            showFriList(myname);
-        }
-        else if(cname=="其他信息"){
-            showElse(myname);
-        }
-    }
-    function showUserInfo(myname) {
-        // jQuery.post("/all",function(rst){//处理响应的结果
-            // var body="";
-            // for(var i=0;i<rst.length;i++)
-            // {
-            //     var json=rst[i];//{"tea_id":1,"tea_name":"zhagnsan","tea_sex":'',"tea_no":""}
-            //     body+="<tr>";
-            //     body+="<td>"+json.tea_no+"</td>";
-            //     body+="<td>"+json.tea_name+"</td>";
-            //     body+="<td>"+json.tea_sex+"</td>";
-            //     body+="<td>";
-            //     body+="<a href='#' onclick='showDelModal(\""+json.tea_id+"\",\""+json.tea_name+"\")'>删除</a>&nbsp;&nbsp;";
-            //     body+="<a href='#' onclick='showEditModal(" +
-            //         "\""+json.tea_id+"\"," +
-            //         "\""+json.tea_name+"\"," +
-            //         "\""+json.tea_no+"\"," +
-            //         "\""+json.tea_sex+"\")'>修改</a>";
-            //     body+="</td>"
-            //     body+="</tr>";
-            // }
-            // jQuery("#tbody").html(body);
-        alert(myname);
-    }
-    function showPwdModel(cname) {
-
-    }
-
-    function showFriList(cname) {
-
-    }
-    function showElse(cname) {
-
-    }
     //读取cookie
     function getCookie(cname) {
         var name = cname + "=";
@@ -289,6 +210,145 @@
         var expires = "expires="+d.toGMTString();
         document.cookie = cname+"="+cvalue+"; "+expires;
     }
+    jQuery(function() {
+        //加载个人信息
+        if (getCookie("user_info") != "") {
+            var myname = getCookie("user_info");
+            jQuery("#mylogin").html("<a class=\"a-login\" href=\"login.html\">"+myname+"</a>");
+            jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
+            showUserInfo(myname);
+        }
+    });
+    function showChange(cname) {
+
+        var myname = getCookie("user_info");
+        if(cname=="密码修改"){
+            showPwdModel(myname);
+        }
+        else if(cname=="基本信息"){
+            showUserInfo(myname);
+        }
+        else if(cname=="关注列表"){
+            showFriList(myname);
+        }
+        else if(cname=="其他信息"){
+            showElse(myname);
+        }
+    }
+    function showUserInfo(myname) {
+        jQuery.post("/searchuser", {"name": myname}, function (rst) {//处理响应的结果
+            var body = "";
+            body += "<li>\n" +
+                "                <div class=\"form-group\">\n" +
+                "                    <label>选择头像：</label>\n" +
+                "                    <div>\n" +
+                "                        <img class=\"head-img\"src=\"../img/QQ.svg\">\n" +
+                "\n" +
+                "                    </div>\n" +
+                "                    <input type=\"file\" class=\"form-control brandPic\" id=\"brandPic\">\n" +
+                "                </div>\n" +
+                "            </li>";
+            body += "<li>\n" +
+                "                <a>用户名</a>\n" +
+                "                <input class=\"inp-input\" data-block=\"true\" type=\"text\"disabled=\"disabled\"  id=\"user_name\"\n" +
+                "                        placeholder=\"" +
+                rst.user_name +
+                "\" />\n" +
+                "            </li>";
+            body += "<li>\n" +
+                "                <a>注册时间</a>\n" +
+                "                <input class=\"inp-input\" data-block=\"fales\" type=\"text\" disabled=\"disabled\"\n" +
+                "                        placeholder=\"" +
+                rst.user_reg_time +
+                "\" />\n" +
+                "            </li>";
+            if(rst.user_sex=="男"){
+                body += "\n" +
+                    "            <li>\n" +
+                    "                <a>性别</a>\n" +
+                    "                <select id=\"sex_r\",name=\"sex\">\n" +
+                    "                    <option value =\"男\"selected = \"selected\">男</option>\n" +
+                    "                    <option value =\"女\" >女</option>\n" +
+                    "                </select>\n" +
+                    "            </li>";
+            }
+            else {
+                body += "\n" +
+                    "            <li>\n" +
+                    "                <a>性别</a>\n" +
+                    "                <select id=\"sex_r\",name=\"sex\">\n" +
+                    "                    <option value =\"男\">男</option>\n" +
+                    "                    <option value =\"女\" selected = \"selected\">女</option>\n" +
+                    "                </select>\n" +
+                    "            </li>";
+            }
+            body += " <li>\n" +
+                "                <a>年龄</a>\n" +
+                "                <input class=\"inp-input\" data-required=\"年龄\"\n" +
+                "                       data-block=\"true\" id=\"age_r\" name=\"age\" type=\"text\"\n" +
+                "                       value=\"" +
+                rst.user_age +
+
+                "\" />\n" +
+                "            </li>";
+            body += "<li>\n" +
+                "                <a>生日</a>\n" +
+                "                <input class=\"inp-input\" id=\"birthday_r\" name=\"birthday\" type=\"date\" placeholder=\"2000-09-09\"/>\n" +
+                "            </li>";
+            body += "<li>\n" +
+                "<a  onclick=\"upDate("  + rst.user_pwd +
+                "," + rst.user_right +
+                ")\"href=\"\#\">保存</a>"+
+
+                "            </li>"
+
+            jQuery("#user_box").html(body);
+            $("#birthday_r").val(rst.user_birthday);
+
+
+        });
+
+
+    }
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    function upDate(pwd,right){
+        var myname = getCookie("user_info");
+        var sex= document.getElementById("sex_r").value;
+        var bir= document.getElementById("birthday_r").value;
+        var age=jQuery("#age_r").val();
+
+        jQuery.post("/edituser",{"name":myname,"pwd":pwd,"profilephoto":"默认",
+            "birthday":bir,"sex":sex,"age":age,"right":right},function(rst) {
+            if(rst=="修改成功"){
+                alert("修改成功")
+                // window.location.reload();
+            }
+            else {
+                alert("修改失败")
+            }})
+
+    }
+    function showPwdModel(cname) {
+
+    }
+
+    function showFriList(cname) {
+
+    }
+    function showElse(cname) {
+
+    }
+
+
+
 </script>
 </body>
 

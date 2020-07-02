@@ -103,8 +103,8 @@
                             <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl">标签墙</a></span>
                         </li>
                         <li class="column-category">
-                            <a href="tag.html">
-                                C++&nbsp;&nbsp;2&nbsp;篇
+                            <a href="tag.html" id="lable1">
+                                C++2篇
                             </a>
                         </li>
                         <li class="column-category">
@@ -521,12 +521,47 @@
         <div class="footer-line">浙ICP备88888888号 <a href="" target="_blank">站点地图</a>
         </div>
     </footer>
-    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="/Boundless-UI-Master/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Boundless-UI-Master/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../js/pace.min.js"></script>
     <script type="text/javascript" src="../js/base.js"></script>
     <script type="text/javascript" src="../js/d-audio.js"></script>
     <script type="text/javascript" src="../js/myPagination.js"></script>
+    <script type="text/javascript">
+   // jQuery(function(){
+   //  // 页面加载完毕，就去数据库中获取数据
+   //  //          /all 请求的地址
+   //  jQuery.post("/findall",function(rst){//处理响应的结果
+   //  // var body="";
+   //  // for(var i=0;i<rst.length;i++)
+   //  // {
+   //  // var json=rst[i];
+   //  // body+="<tr>";
+   //  //     body+="<td>"+json.article_id+"</td>";
+   //  //     body+="<td>"+"标签"+"</td>";
+   //  //    /* body+="<td>";
+   //  //         body+="<a href='#' onclick='showDelModal(\""+json.tea_id+"\",\""+json.tea_name+"\")'>删除</a>&nbsp;&nbsp;";
+   //  //         body+="<a href='#' onclick='showEditModal(" +
+   //  //                 "\""+json.tea_id+"\"," +
+   //  //                 "\""+json.tea_name+"\"," +
+   //  //                 "\""+json.tea_no+"\"," +
+   //  //                 "\""+json.tea_sex+"\")'>修改</a>";
+   //  //         body+="</td>"*/
+   //  //     body+="</tr>";
+   //  // }
+   //  //$("#lable1").text('12342');
+   //      alert("12345");
+   //  },"json");//表示返回数据的格式
+   //  });
+        jQuery(function(){
+            alert("125");
+            jQuery.post("/deleteart",{'nnn':'1221'},function(rst) {
+                alert("123"+rst);
+            });//你返回的是字符串，无法转为json，报错了，把 json，去掉
+
+            alert("126");
+        })
+    </script>
     <script type="text/javascript">
         const pagination = new myPagination({
             id: 'pagination',
@@ -546,7 +581,7 @@
             }
         });
     </script>
-    <script type="text/javascript" defer>
+    <script type="text/javascript" defer>//defer表示等加载页面后才执行
         //音乐插件
         const myAudio = new Daudio({
             ele: '#d-audio',

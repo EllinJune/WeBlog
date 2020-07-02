@@ -181,6 +181,7 @@
 <script type="text/javascript" src="../js/sweetalert.min.js"></script>
 <script type="text/javascript" src="../js/pace.min.js"></script>
 <script type="text/javascript" src="../js/base.js"></script>
+<script src="../js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="../js/d-audio.js"></script>
 <script type="text/javascript" defer>
     //音乐插件
@@ -258,12 +259,14 @@
             var body = "";
             body += "<li>\n" +
                 "                <div class=\"form-group\">\n" +
-                "                    <label>选择头像：</label>\n" +
                 "                    <div>\n" +
-                "                        <img class=\"head-img\"src=\"../img/QQ.svg\">\n" +
+                "                        选择头像：<img class=\"head-img\"src=\"" +
+        rst.user_profile_photo +
+                "\">\n" +
                 "\n" +
                 "                    </div>\n" +
-                "                    <input type=\"file\" class=\"form-control brandPic\" id=\"brandPic\">\n" +
+                "                    <input type=\"file\"  id=\"brandPic\">\n" +
+                    "<button type=\"button\" id=\"btn_up\">上传</button>"+
                 "                </div>\n" +
                 "            </li>";
             body += "<li>\n" +
@@ -322,7 +325,28 @@
 
             jQuery("#user_box").html(body);
             $("#birthday_r").val(rst.user_birthday);
+            jQuery("#btn_up").click(function(){
+                alert("gggg");
+                var f=jQuery("#brandPic")[0].files[0];
+                var formData=new FormData();
+                formData.append("file",f);
+                formData.append("u_name","jj");
+                jQuery.ajax({
+                    type:"post",
+                    url:"/upprophoto",
+                    data:formData,
+                    processData: false,//jquery不处理数据
+                    contentType:false,//jquery不需要设置content-type的类型
+                    success:function(rst){
+                        jQuery("#brandPic").val(rst);
+                    },
+                    fail:function(rst){
+                        alert(rst);
+                    }
 
+                });
+
+            });
 
         });
 
@@ -343,8 +367,9 @@
         var sex= document.getElementById("sex_r").value;
         var bir= document.getElementById("birthday_r").value;
         var age=jQuery("#age_r").val();
+        var profilephoto="../img/"+jQuery("#brandPic").val().substring(12);
 
-        jQuery.post("/edituser",{"name":myname,"pwd":pwd,"profilephoto":"默认",
+        jQuery.post("/edituser",{"name":myname,"pwd":pwd,"profilephoto":profilephoto,
             "birthday":bir,"sex":sex,"age":age,"right":right},function(rst) {
             if(rst=="修改成功"){
                 alert("修改成功")

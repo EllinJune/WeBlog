@@ -1,7 +1,9 @@
 package com.weblog.demo.demo.controller.mkcontroller;
 
 import com.weblog.demo.demo.service.mkservice.ArticleLableSetService;
+import com.weblog.demo.demo.service.mkservice.ArticleSortService;
 import com.weblog.demo.demo.service.mkservice.CommentsService;
+import com.weblog.demo.demo.service.mkservice.LablesService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +15,14 @@ import java.util.Map;
 //该注解不支持页面跳转，所有方法执行完后，都会向前端返回字符串格式的数据
 //如果返回的是集合或者对象，自动转换为json格式的数据
 @RestController
-public class ArticleLableSetController {
+public class ArticleSortController {
 
     @Resource
-    private ArticleLableSetService artlabsetService;
+    private ArticleSortService artsortService;
 
-    @RequestMapping("/findalllables")
+    @RequestMapping("/findallartsorts")
     public List<Map<String,Object>> findAll() {
-        List<Map<String,Object>> list=artlabsetService.findAll();
+        List<Map<String,Object>> list=artsortService.findAll();
         return list;
     }
 
@@ -28,16 +30,10 @@ public class ArticleLableSetController {
      * 通过RequestMapping设置该方法，请求的路径
      * @return
      */
-    @RequestMapping("/findlabbyartid")
-    public List<Map<String,Object>> findByArtid(@RequestParam int artid){
-        List<Map<String,Object>> list=artlabsetService.findByArtid(artid);
-        return list;
-    }
-
-    @RequestMapping("/findartbylabid")
-    public List<Map<String,Object>> findByLabid(@RequestParam int labid){
-        List<Map<String,Object>> list=artlabsetService.findByLabid(labid);
-        return list;
+    @RequestMapping("/findbyartsortid")
+    public Map<String,Object> findByLabid(@RequestParam int labid){
+        Map<String,Object> map=artsortService.findLabName(labid);
+        return map;
     }
 
     /**
@@ -48,10 +44,10 @@ public class ArticleLableSetController {
      * @param map
      * @return
      */
-    @RequestMapping("/saveartlabset")
+    @RequestMapping("/saveartsort")
     public String save(@RequestParam Map<String,String> map){
         String msg="增加失败";
-        boolean flag=artlabsetService.doSave(map);
+        boolean flag=artsortService.doSave(map);
         if(flag){
             msg="增加成功";
         }
@@ -63,31 +59,20 @@ public class ArticleLableSetController {
      * @param map
      * @return
      */
-    @RequestMapping("/deleteart")
-    public String deleteArt(@RequestParam Map<String,String> map){
-        System.out.println(map);
-        String msg="删除失败";
-        boolean flag=artlabsetService.doDeleteArt(map);
-        if(flag){
-            msg="删除成功";
-        }
-        return msg;
-    }
-
-    @RequestMapping("/deletelab")
+    @RequestMapping("/deleteartsort")
     public String deleteLab(@RequestParam Map<String,String> map){
         String msg="删除失败";
-        boolean flag=artlabsetService.doDeleteLab(map);
+        boolean flag=artsortService.doDeleteLab(map);
         if(flag){
             msg="删除成功";
         }
         return msg;
     }
 
-    @RequestMapping("/editartlabset")
+    @RequestMapping("/editartsort")
     public String update(@RequestParam Map<String,String> map){
         String msg="修改失败";
-        boolean flag=artlabsetService.doUpdate(map);
+        boolean flag=artsortService.doUpdate(map);
         if(flag){
             msg="修改成功";
         }

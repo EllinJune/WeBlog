@@ -20,12 +20,12 @@ public class ArticleController {
      * @param map
      * @return
      */
-    @RequestMapping("/save")
-    public String save(@RequestParam Map<String,String> map){
-        String msg="保存失败";
+    @RequestMapping("/savearticle")
+    public String savearticle(@RequestParam Map<String,String> map){
+        String msg="发布失败";
         boolean flag=articleService.doSaveArticle(map);
         if(flag){
-            msg="保存成功";
+            msg="发布成功";
         }
         return msg;
     }
@@ -48,13 +48,47 @@ public class ArticleController {
         }
         return msg;
     }
-//    @RequestMapping("/findbyid")
-//    public String findById(@RequestParam int id){
-//        String msg="修改失败";
-//        boolean flag=articleService.findById(id);
-//        if(flag){
-//            msg="修改成功";
-//        }
-//        return msg;
-//    }
+    @RequestMapping("/savecomment")
+    public String savecomment(@RequestParam Map<String,String> map){
+        String msg="发布失败";
+        boolean flag=articleService.doSaveComment(map);
+        if(flag){
+            msg="发布成功";
+        }
+        return msg;
+    }
+    @RequestMapping("/all")
+    public List<Map<String,Object>> message(){
+        List<Map<String,Object>> list=articleService.doMessage();
+        return list;
+    }
+    @RequestMapping("/find")
+    public List<Map<String,Object>> findComment(){
+        List<Map<String,Object>> list=articleService.doFindComment();
+        return list;
+    }
+    @RequestMapping("/findwriter")
+    public List<Map<String,Object>> findWriter(){
+        List<Map<String,Object>> list=articleService.doFindWriter();
+        return list;
+    }
+    @RequestMapping("/findobserver")
+    public List<Map<String,Object>> findObserver(){
+        List<Map<String,Object>> list=articleService.doFindObserver();
+        return list;
+    }
+    @RequestMapping("/savesort")
+    public String saveSort(@RequestParam Map<String,String> map){
+        String msg="发布失败";
+        boolean flag=articleService.doSaveSort(map);
+        if(flag){
+            msg="发布成功";
+        }
+        return msg;
+    }
+    @RequestMapping("/findArticleId")
+    public List<Map<String,Object>> findId(String title){
+        List<Map<String,Object>> list=articleService.doFindId(title);
+        return list;
+    }
 }

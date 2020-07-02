@@ -75,6 +75,17 @@ public class UserInfoController {
         return msg;
     }
 
+
+    @RequestMapping("/editpwd")
+    public String updateCode(@RequestParam Map<String,String> map){
+        String msg="修改失败";
+        boolean flag=userInfoService.doUpdateCode(map);
+        if(flag){
+            msg="修改成功";
+        }
+        return msg;
+    }
+
     /**
      * 通过名称返回map
      * @param map

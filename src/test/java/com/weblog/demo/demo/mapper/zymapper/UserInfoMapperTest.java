@@ -84,4 +84,13 @@ class UserInfoMapperTest {
         Map<String,Object> n = userInfoMapper.Login(map);
         System.out.println(n);
     }
+
+    @Test
+    void updatecode() {
+        Map<String,String> map=new HashMap<>();
+        map.put("name","zy");
+        map.put("pwd","111");
+        int n=userInfoMapper.updatecode(map);
+        System.out.println(n);
+    }
 }

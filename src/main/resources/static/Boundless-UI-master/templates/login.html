@@ -121,7 +121,8 @@
                 var pwd=jQuery("#pwd").val();
                 jQuery.post("/login",{"name":name,"pwd":pwd},function(rst) {
                     if(rst.rst){
-                        var t=rst.right==0?'管理员':'';
+                        // var t=rst.right==0?'管理员':'';
+                        var t=rst.right==0?'':'';
                         var cvalue=t+rst.name;
                         setCookie("user_info",cvalue,2);
                         location.href="index.html";

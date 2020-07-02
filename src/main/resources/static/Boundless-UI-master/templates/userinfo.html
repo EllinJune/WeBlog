@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/pace-theme-flash.css">
     <link rel="stylesheet" href="../css/d-audio.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/link.css">
     <link rel="shortcut icon" href="../img/user.jpeg">
     <style rel="stylesheet">
@@ -29,6 +30,7 @@
 
         }
     </style>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -86,6 +88,7 @@
             <span class="search-s fl">
                 <label for="search-input-m"></label><input class="fl" type="text" id="search-input-m" placeholder="关键词">
                 <a class="search-icon fl" onclick="m_search()" href="javascript:void(0);"></a>
+
             </span>
     </li>
     <li><a class="w-h-100 fl" href="index.html">首页</a></li>
@@ -103,42 +106,56 @@
         <!--友情链接-->
         <ul class="link-box"id="user_box">
             <li>
-                <div class="form-group">
-                    <label>选择头像：</label>
-                    <div>
-                        <img class="head-img"src="../img/QQ.svg">
+                <a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>
+                <input class="inp-input" data-required="请输入新密码" data-rule="^[\w_-]{6,16}$"
+                data-rule-message="请输入6至16位普通字符" data-block="true" id="new_pwd_r" name="new_pwd" type="password"
+                placeholder="备注" value="hhhh"/>
+                <button type="button" class="btn btn-default">保存</button>
+                <button type="button" class="btn btn-default">删除</button>
 
-                    </div>
-                    <input type="file" class="form-control brandPic" id="brandPic">
-                </div>
             </li>
-            <li>
-                <a>用户名</a>
-                <input class="inp-input" data-block="true" type="text"disabled="disabled"  id="user_name"
-                        placeholder="用户名" />
-            </li>
-            <li>
-                <a>注册时间</a>
-                <input class="inp-input" data-block="fales" type="text" disabled="disabled"
-                        placeholder="2000-9-9" />
-            </li>
-            <li>
-                <a>性别</a>
-                <select id="sex_r",name="sex">
-                    <option value ="男">男</option>
-                    <option value ="女" selected = "selected">女</option>
-                </select>
-            </li>
-            <li>
-                <a>年龄</a>
-                <input class="inp-input" data-required="年龄"
-                       data-block="true" id="age" name="age" type="text"
-                       placeholder="请输入年龄" />
-            </li>
-            <li>
-                <a>生日</a>
-                <input class="inp-input" id="birthday_r" name="birthday" type="date" placeholder="2000-09-09"/>
-            </li>
+            <!--<li>-->
+                <!--<div class="form-group">-->
+                    <!--<label>选择头像：</label>-->
+                    <!--<div>-->
+                        <!--<img class="head-img"src="../img/QQ.svg">-->
+
+                    <!--</div>-->
+                    <!--<input type="file" class="form-control brandPic" id="brandPic">-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a>用户名</a>-->
+                <!--<input class="inp-input" data-block="true" type="text"disabled="disabled"  id="user_name"-->
+                        <!--placeholder="用户名" />-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a>注册时间</a>-->
+                <!--<input class="inp-input" data-block="fales" type="text" disabled="disabled"-->
+                        <!--placeholder="2000-9-9" />-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a>性别</a>-->
+                <!--<select id="sex_r",name="sex">-->
+                    <!--<option value ="男">男</option>-->
+                    <!--<option value ="女" selected = "selected">女</option>-->
+                <!--</select>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a>修改密码</a>-->
+                <!--<li> <input class="inp-input" data-required="请输入原密码" data-rule="^[\w_-]{6,16}$"-->
+                    <!--data-rule-message="请输入6至16位普通字符" data-block="true" id="pwd_r" name="pwd" type="password"-->
+                    <!--placeholder="请输入原密码" />-->
+                 <!--</li>-->
+                <!--<li>  <input class="inp-input" data-required="请输入新密码" data-rule="^[\w_-]{6,16}$"-->
+                           <!--data-rule-message="请输入6至16位普通字符" data-block="true" id="new_pwd_r" name="new_pwd" type="password"-->
+                           <!--placeholder="请输入新密码" />-->
+                <!--</li>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a>生日</a>-->
+                <!--<input class="inp-input" id="birthday_r" name="birthday" type="date" placeholder="2000-09-09"/>-->
+            <!--</li>-->
         </ul>
     </article>
 </div>
@@ -229,6 +246,7 @@
             showUserInfo(myname);
         }
         else if(cname=="关注列表"){
+
             showFriList(myname);
         }
         else if(cname=="其他信息"){
@@ -320,6 +338,7 @@
         return "";
     }
     function upDate(pwd,right){
+
         var myname = getCookie("user_info");
         var sex= document.getElementById("sex_r").value;
         var bir= document.getElementById("birthday_r").value;
@@ -337,10 +356,114 @@
 
     }
     function showPwdModel(cname) {
+        jQuery.post("/searchuser", {"name": cname}, function (rst) {//处理响应的结果
+            var body = "";
+            body += "<li>\n" +
+                "                <a>修改密码</a>\n" +
+                "                <li> <input class=\"inp-input\" data-required=\"请输入原密码\" data-rule=\"^[\\w_-]{6,16}$\"\n" +
+                "                    data-rule-message=\"请输入6至16位普通字符\" data-block=\"true\" id=\"pwd_r\" name=\"pwd\" type=\"password\"\n" +
+                "                    placeholder=\"请输入原密码\" />\n" +
+                "                 </li>\n" +
+                "                <li>  <input class=\"inp-input\" data-required=\"请输入新密码\" data-rule=\"^[\\w_-]{6,16}$\"\n" +
+                "                           data-rule-message=\"请输入6至16位普通字符\" data-block=\"true\" id=\"new_pwd_r\" name=\"new_pwd\" type=\"password\"\n" +
+                "                           placeholder=\"请输入新密码\" />\n" +
+                "                </li>\n" +
+                "            </li>";
+            body += "<li>\n" +
+                "<a  onclick=\"upDateCode(" +
+                ")\"href=\"\#\">确认修改</a>"
+
+
+
+            jQuery("#user_box").html(body);
+
+        })
+    }
+    function upDateCode(){
+        var myname = getCookie("user_info");
+        var newpwdr = jQuery("#new_pwd_r").val();
+        var pwdr = jQuery("#pwd_r").val();
+        jQuery.post("/searchuser", {"name": myname}, function (rst) {
+            if(rst.user_pwd!=pwdr){
+                alert("原密码错误");
+            }
+            else {
+                jQuery.post("/editpwd", {"name": myname, "pwd": newpwdr}, function (rst) {
+                    if (rst == "修改成功") {
+                        alert("修改成功")
+
+                    }
+                    else {
+                        alert("修改失败")
+                    }
+                })
+            }
+        });
+
+
+
 
     }
 
     function showFriList(cname) {
+
+        jQuery.post("/searchuser",{"name":cname},function(rst) {
+
+            jQuery.post("/allfriends", {"id":rst.user_id},function (rst1) {//处理响应的结果
+
+                var body = "";
+                for (var i = 0; i < rst1.length; i++) {
+                    var json = rst1[i];
+                    if(json.user_status==1) {
+
+                        jQuery.post("/userinfo", {"id": json.user_friends_id}, function (rst2) {
+                            body += "<li>\n" +
+                                "                <a href=\"https://www.cangmangai.cn/\" target=\"_blank\">" +
+                                rst2.user_name +
+                                "</a>\n" +
+                                "                <input class=\"inp-input\" data-rule=\"^[\\w_-]{6,16}$\"\n" +
+                                "                data-rule-message=\"请输入6至16位普通字符\" data-block=\"true\" id=\"new_note_r\" name=\"new_pwd\" type=\"text\"\n" +
+                                "                placeholder=\"备注\"" +
+                                "                       value=\"" +
+                                json.user_note +
+                                "\"" +
+                                " />\n" +
+                                "<button type=\"button\" class=\"btn btn-default\"onclick=\"upDateNote(" +
+                                rst.user_id +
+                                "," +
+                                rst2.user_id +
+                                ")\">保存</button>\n" +
+
+                                "<button type=\"button\" class=\"btn btn-default\"onclick=\"upDateStatus(" +
+                                rst.user_id +
+                                "," +
+                                rst2.user_id +
+                                ")\" >删除</button>" +
+                                "            </li>";
+                            jQuery("#user_box").html(body);
+
+                        });
+                    }
+
+                }
+            }, "json");//表示返回数据的格式
+
+        });
+
+    }
+    function upDateNote(user_id,user_friends_id){
+        var newnote=jQuery("#new_note_r").val();
+        jQuery.post("/editnote", {"id":user_id,"friendsid":user_friends_id,"note":newnote},function (rst) {
+            alert("修改成功");
+
+        });
+
+    }
+    function upDateStatus(user_id,user_friends_id){
+        jQuery.post("/editstatus", {"id":user_id,"friendsid":user_friends_id,"status":0},function (rst) {
+            alert("删除成功");
+
+        });
 
     }
     function showElse(cname) {

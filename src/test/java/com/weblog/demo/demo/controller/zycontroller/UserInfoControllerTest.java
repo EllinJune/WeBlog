@@ -104,4 +104,15 @@ class UserInfoControllerTest {
         String str=rst.getResponse().getContentAsString(Charset.forName("UTF-8"));
         System.out.println(str);
     }
+
+    @Test
+    void updateCode() throws Exception{
+        MockHttpServletRequestBuilder builder=
+                MockMvcRequestBuilders.post("/editpwd")
+                        .param("pwd","121")
+                        .param("name","zy");
+        MvcResult rst=mockMvc.perform(builder).andReturn();
+        String str=rst.getResponse().getContentAsString(Charset.forName("UTF-8"));
+        System.out.println(str);
+    }
 }

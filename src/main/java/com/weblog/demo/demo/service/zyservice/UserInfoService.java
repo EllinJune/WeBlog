@@ -73,6 +73,25 @@ public class UserInfoService {
     }
 
     /**
+     *
+     * @param map
+     * @return
+     */
+
+    public boolean doUpdateCode(Map<String,String> map){
+        boolean flag=false;
+        try {
+            int r=userInfoMapper.updatecode(map);
+            if(r>0){
+                flag=true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    /**
      * 通过id查找用户，返回用户信息
      * @param map
      * @return Map<String,Object>

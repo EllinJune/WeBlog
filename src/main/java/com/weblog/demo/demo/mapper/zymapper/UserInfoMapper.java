@@ -65,6 +65,18 @@ public interface UserInfoMapper {
             " where user_name=#{user.name}")
     public int update(@Param("user") Map<String,String> user);
 
+
+    /**
+     * 修改密码
+     * @param user
+     * @return
+     */
+    @Update("update users " +
+            " set user_pwd=#{user.pwd}" +
+            " where user_name=#{user.name}")
+    public int updatecode(@Param("user") Map<String,String> user);
+
+
     /**
      * 登录验证
      * @param map

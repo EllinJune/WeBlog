@@ -43,7 +43,7 @@ class UserInfoServiceTest {
     void doUpdate() {
         Map<String,String> map=new HashMap<>();
         map.put("id","2");
-        map.put("name","王老师");
+        map.put("name","李老师");
         map.put("pwd","111");
         map.put("profilephoto","zbd");
         map.put("regtime","2018-9-9 18:00:00");

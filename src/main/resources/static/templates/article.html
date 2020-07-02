@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>escape</title>
+    <title>我的博客</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/pace-theme-flash.css">
     <link rel="stylesheet" href="../css/d-audio.css">
@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="../css/code.css">
     <link rel="stylesheet" href="../css/github-markdown.css">
     <link rel="stylesheet" href="../css/vditor.css">
-    <link rel="shortcut icon" href="../img/user.jpeg">
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="../css/like.css">
+    <link rel="stylesheet" href="../css/save.css">
     <style>
         .lazy-image {
             background: url('../img/loading.gif') no-repeat center;
@@ -76,7 +78,7 @@
     <div class="nav-bar" id="nav-bar">
         <div class="logo-box">
             <a href="index.html" class="blog-title ta-c"><img style="vertical-align: top;" alt="logo"
-                                                              src="../img/user.jpeg" /></a>
+                                                              src="辉夜.jpg" /></a>
         </div>
         <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="index.html">首页</a></div>
         <div class="nb-a-holder"><a class="nb-a ta-c" href="category.html">分类</a></div>
@@ -105,14 +107,14 @@
 <nav class="mobile-nav">
     <div class="logo-box">
         <a href="index.html" class="blog-title ta-c">
-            <img style="vertical-align: top;" alt="logo" src="../img/user.jpeg" /></a>
+            <img style="vertical-align: top;" alt="logo" src="辉夜.jpg" /></a>
     </div>
     <a id="mobile_cate" style="background-image: url('../img/cate.svg')" href="javascript:void(0);"></a>
 </nav>
 <ul id="nav-m-list">
     <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
     <li id="m-img-li">
-        <img id="m-img" alt="苍茫误此生" src="../img/user.jpeg">
+        <img id="m-img" alt="苍茫误此生" src="辉夜.jpg">
     </li>
     <li>
             <span class="search-s fl">
@@ -129,30 +131,11 @@
     <li><a class="w-h-100 fl" href="link.html">友情链接</a></li>
 </ul>
 <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
-<!--文章目录-->
-<div class="toc">
-    <ul>
-        <li><a href="#_1">二. 栈和队列</a>
-            <ul>
-                <li><a href="#1">1. 栈</a>
-                    <ul>
-                        <li><a href="#1_1">(1) 概念</a></li>
-                        <li><a href="#2">(2) 数据结构</a></li>
-                    </ul>
-                </li>
-                <li><a href="#2_1">2. 队列</a>
-                    <ul>
-                        <li><a href="#1_2">(1) 概念</a></li>
-                        <li><a href="#2_2">(2) 数据结构</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+
 
 <!--主体-->
 <section class="main">
+
     <label for="article_id"></label><input hidden id="article_id" name="article_id" value="55">
     <label for="user_id"></label><input hidden id="user_id" name="user_id"
                                         value="{{ no such element: django.contrib.sessions.backends.cache.SessionStore object[&#39;user_id&#39;] }}">
@@ -165,25 +148,46 @@
         <!--文章内容-->
         <div class="article-container">
             <div class="article-content markdown-body">
-                <h1 style="margin: 10px 0" id="title"></h1>
+                <h1 style="margin: 10px 0" id="title">
+
+                </h1>
+                <!--点赞收藏编辑-->
+                <div class="dian">
+                    <div id="zan">
+                        <img src="good.jpg">
+                        <div id="num1">0</div>
+                    </div>
+                    <div id="cai">
+                        <img src="collect.jpg">
+                        <div id="num2">0</div>
+                    </div>
+                    <div id="edit">
+                        <img src="edit.jpg">
+                    </div>
+                </div>
+
                 <div class="article-cate">
-                    <a href="category.html">后台</a>
-                    <a href="tag.html">C++</a>
+                    <a href="category.html">个人思考</a>
                 </div>
                 <div class="writer-info">
                     <span style="margin: 5px 0;">作者: </span>
-                    <span id="writer">admin </span>
+                    <span id="writer">
+
+                    </span>
                     <span id="write-time"></span>
-                    <span>点赞(<span id="like"></span>)</span>
-                    <span>收藏(<span id="collection"></span>)</span>
                 </div>
+
                 <h3 id="content">
                 </h3>
             <div class="prev-next">
                 <div class="p-div">
                     <span class="fl">上一篇：</span>
-                    <a class="one-line-overflow fl" href="/front/articleDetail/54/" id="prev-a">线性表</a>
+                    <a class="one-line-overflow fl" href="article.html" id="prev-a">孤独与狂欢</a>
                 </div>
+            </div>
+
+                <button type="button" id="save" onclick="doedit()">保存</button>
+
             </div>
         </div>
         <!--评论-->
@@ -193,250 +197,8 @@
                                                   class="at-sort-comment-a c-666">评论</a></span>
                 <span class="location fl c-666"><a class="at-sort-detail c-666"></a> </span>
             </div>
-            <div class="text-area-holder">
-                <div id="vditor" class="vditor" style="height: 300px; width: auto;">
-                    <div class="vditor-toolbar">
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__ne" aria-label="表情 <ctrl-e>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32px"
-                                    height="32px">
-                                <path
-                                        d="M16 24.789c-3.756 0-6.911-2.254-8.188-5.559h16.376c-1.277 3.305-4.432 5.559-8.188 5.559zM10.366 14.423c-1.352 0-2.404-1.052-2.404-2.404s1.052-2.404 2.404-2.404 2.404 1.052 2.404 2.404-1.052 2.404-2.404 2.404zM21.634 14.423c-1.352 0-2.404-1.052-2.404-2.404s1.052-2.404 2.404-2.404 2.404 1.052 2.404 2.404-1.052 2.404-2.404 2.404zM16 28.845c7.061 0 12.845-5.784 12.845-12.845s-5.784-12.845-12.845-12.845-12.845 5.784-12.845 12.845 5.784 12.845 12.845 12.845zM16 0c8.864 0 16 7.136 16 16s-7.136 16-16 16-16-7.136-16-16 7.136-16 16-16z">
-                                </path>
-                            </svg></div>
-                            <div class="vditor-panel" style="display: none;">
-                                <div class="vditor-emojis" style="max-height: 220px"><span data-value="👍 "
-                                                                                           data-key="+1">👍</span>
-                                    <span data-value="👎 " data-key="-1">👎</span>
-                                    <span data-value="😰 " data-key="cold_sweat">😰</span>
-                                    <span data-value="❤️ " data-key="heart">❤️</span><span data-value="🙏 "
-                                                                                           data-key="pray">🙏</span><span data-value="💔 "
-                                                                                                                          data-key="broken_heart">💔</span><span data-value="👌 "
-                                                                                                                                                                 data-key="ok_hand">👌</span><span data-value="😄 "
-                                                                                                                                                                                                   data-key="smile">😄</span><span data-value="😆 "
-                                                                                                                                                                                                                                   data-key="laughing">😆</span><span data-value="😏 "
-                                                                                                                                                                                                                                                                      data-key="smirk">😏</span><span data-value="😍 "
-                                                                                                                                                                                                                                                                                                      data-key="heart_eyes">😍</span><span data-value="😁 "
-                                                                                                                                                                                                                                                                                                                                           data-key="grin">😁</span><span data-value="😛 "
-                                                                                                                                                                                                                                                                                                                                                                          data-key="stuck_out_tongue">😛</span><span data-value="😑 "
-                                                                                                                                                                                                                                                                                                                                                                                                                     data-key="expressionless">😑</span><span data-value="😒 "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                              data-key="unamused">😒</span><span data-value="😭 "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 data-key="sob">😭</span><span data-value="😂 " data-key="joy">😂</span><span
-                                            data-value="😫 " data-key="tired_face">😫</span><span data-value="😊 "
-                                                                                                  data-key="blush">😊</span><span data-value="😢 "
-                                                                                                                                  data-key="cry">😢</span><span data-value="😨 " data-key="fearful">😨</span>
-                                </div>
-                                <div class="vditor-emojis__tail">
-                                    <span class="vditor-emojis__tip">grin</span><span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__ne" aria-label="标题 <ctrl-h>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M4.45 0h3.594c0.595 0 1.078 0.384 1.078 0.858v30.284c0 0.474-0.482 0.858-1.078 0.858h-3.594c-0.595 0-1.078-0.384-1.078-0.858v-30.284c-0-0.474 0.482-0.858 1.078-0.858zM23.888 0h3.673c0.59 0 1.068 0.384 1.068 0.858v30.284c0 0.474-0.478 0.858-1.068 0.858h-3.673c-0.59 0-1.068-0.384-1.068-0.858v-30.284c0-0.474 0.478-0.858 1.068-0.858z">
-                                </path>
-                                <path
-                                        d="M25.069 14.167v3.667c0 0.589-0.384 1.065-0.858 1.065h-15.655c-0.474 0-0.858-0.477-0.858-1.065v-3.667c0-0.589 0.384-1.065 0.858-1.065h15.655c0.474 0 0.858 0.477 0.858 1.065z">
-                                </path>
-                            </svg> </div>
-                            <div class="vditor-panel" style="display: none;">
-                                <h1 data-value="# ">Heading 1</h1>
-                                <h2 data-value="## ">Heading 2</h2>
-                                <h3 data-value="### ">Heading 3</h3>
-                                <h4 data-value="#### ">Heading 4</h4>
-                                <h5 data-value="##### ">Heading 5</h5>
-                                <h6 data-value="###### ">Heading 6</h6>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__ne" aria-label="粗体 <ctrl-b>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32px"
-                                    height="32px">
-                                <path
-                                        d="M22.996 15.023c1.339-1.591 2.147-3.643 2.147-5.88 0-5.041-4.102-9.143-9.143-9.143h-11.429v32h13.714c5.041 0 9.143-4.102 9.143-9.143 0-3.32-1.779-6.232-4.433-7.834zM11.429 4.571h3.625c1.999 0 3.625 2.051 3.625 4.571s-1.626 4.571-3.625 4.571h-3.625v-9.143zM17.107 27.429h-5.679v-9.143h5.679c2.087 0 3.786 2.051 3.786 4.571s-1.698 4.571-3.786 4.571z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__ne" aria-label="斜体 <ctrl-i>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M29.714 0v2.286h-4.571l-11.429 27.429h4.571v2.286h-16v-2.286h4.571l11.429-27.429h-4.571v-2.286z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__ne" aria-label="删除线 <ctrl-s>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M32 16v2h-7.328c0.86 1.203 1.328 2.584 1.328 4 0 2.215-1.146 4.345-3.143 5.843-1.855 1.391-4.29 2.157-6.857 2.157s-5.002-0.766-6.857-2.157c-1.998-1.498-3.143-3.628-3.143-5.843h4c0 2.168 2.748 4 6 4s6-1.832 6-4c0-2.168-2.748-4-6-4h-16v-2h9.36c-0.073-0.052-0.146-0.104-0.217-0.157-1.998-1.498-3.143-3.628-3.143-5.843s1.146-4.345 3.143-5.843c1.855-1.391 4.29-2.157 6.857-2.157s5.002 0.766 6.857 2.157c1.997 1.498 3.143 3.628 3.143 5.843h-4c0-2.168-2.748-4-6-4s-6 1.832-6 4c0 2.168 2.748 4 6 4 2.468 0 4.814 0.709 6.64 2h9.36z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div class="vditor-menu__divider"></div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="分隔线 <ctrl-⇧-d>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M31.68 14.56h-31.36c-0.176 0-0.32 0.144-0.32 0.32v2.24c0 0.176 0.144 0.32 0.32 0.32h31.36c0.176 0 0.32-0.144 0.32-0.32v-2.24c0-0.176-0.144-0.32-0.32-0.32z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="引用 <ctrl-.>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M7.024 13.003c3.862 0 6.993 3.131 6.993 6.993s-3.131 6.993-6.993 6.993-6.993-3.131-6.993-6.993l-0.031-0.999c0-7.724 6.262-13.986 13.986-13.986v3.996c-2.668 0-5.177 1.039-7.064 2.926-0.363 0.363-0.695 0.75-0.994 1.156 0.357-0.056 0.723-0.086 1.096-0.086zM25.007 13.003c3.862 0 6.993 3.131 6.993 6.993s-3.131 6.993-6.993 6.993-6.993-3.131-6.993-6.993l-0.031-0.999c0-7.724 6.262-13.986 13.986-13.986v3.996c-2.668 0-5.177 1.039-7.064 2.926-0.363 0.363-0.695 0.75-0.994 1.156 0.357-0.056 0.723-0.086 1.096-0.086z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="无序列表 <ctrl-l>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M12 2h20v4h-20v-4zM12 14h20v4h-20v-4zM12 26h20v4h-20v-4zM0 4c0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.209-1.791-4-4-4s-4 1.791-4 4zM0 16c0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.209-1.791-4-4-4s-4 1.791-4 4zM0 28c0 2.209 1.791 4 4 4s4-1.791 4-4c0-2.209-1.791-4-4-4s-4 1.791-4 4z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="有序列表 <ctrl-o>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M11 26h20v4h-20zM11 14h20v4h-20zM11 2h20v4h-20zM5 0v8h-2v-6h-2v-2zM3 16.438v1.563h4v2h-6v-4.563l4-1.875v-1.563h-4v-2h6v4.563zM7 22v10h-6v-2h4v-2h-4v-2h4v-2h-4v-2z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="任务列表 <ctrl-j>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M27.094 19.485v6.12c0 3.059-2.483 5.542-5.542 5.542h-16.010c-3.059 0-5.542-2.483-5.542-5.542v-16.010c0-3.059 2.483-5.542 5.542-5.542h16.010c0.769 0 1.54 0.154 2.251 0.481 0.174 0.077 0.308 0.25 0.346 0.443 0.039 0.211-0.019 0.404-0.174 0.558l-0.943 0.943c-0.115 0.115-0.289 0.193-0.443 0.193-0.058 0-0.115-0.019-0.174-0.039-0.289-0.077-0.578-0.115-0.866-0.115h-16.010c-1.693 0-3.079 1.386-3.079 3.079v16.010c0 1.693 1.386 3.079 3.079 3.079h16.010c1.693 0 3.079-1.386 3.079-3.079v-4.888c0-0.154 0.058-0.308 0.174-0.424l1.232-1.232c0.135-0.135 0.289-0.193 0.443-0.193 0.077 0 0.154 0.019 0.231 0.058 0.231 0.096 0.385 0.308 0.385 0.558zM31.54 10.076l-15.664 15.664c-0.615 0.615-1.578 0.615-2.194 0l-8.275-8.275c-0.615-0.615-0.615-1.578 0-2.194l2.116-2.116c0.615-0.615 1.578-0.615 2.194 0l5.060 5.060 12.451-12.451c0.615-0.615 1.578-0.615 2.194 0l2.116 2.116c0.615 0.615 0.615 1.578 0 2.194z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="代码块 <ctrl-u>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M21.053 21.895l2.526 2.526 8.421-8.421-8.421-8.421-2.526 2.526 5.895 5.895z">
-                                </path>
-                                <path
-                                        d="M10.947 10.105l-2.526-2.526-8.421 8.421 8.421 8.421 2.526-2.526-5.895-5.895z">
-                                </path>
-                                <path d="M17.613 6.487l1.828 0.499-5.052 18.527-1.828-0.499 5.052-18.527z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="行内代码 <ctrl-g>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M18.133 23.467l3.2 3.2 10.667-10.667-10.667-10.667-3.2 3.2 7.467 7.467z">
-                                </path>
-                                <path
-                                        d="M13.867 8.533l-3.2-3.2-10.667 10.667 10.667 10.667 3.2-3.2-7.467-7.467z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="撤销 <ctrl-z>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M12.417 9.75q8.667 1.25 13.375 6.625t6.208 12.958q-6.417-9.083-19.583-9.083v7.25l-12.417-12.417 12.417-12.417v7.083z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="重做 <ctrl-y>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M19.583 9.75q-8.667 1.25-13.375 6.625t-6.208 12.958q6.417-9.083 19.583-9.083v7.25l12.417-12.417-12.417-12.417v7.083z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="链接 <ctrl-k>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M29.187 2.933l-0.12-0.121c-2.813-2.812-7.415-2.812-10.228 0l-6.516 6.517c-2.812 2.812-2.812 7.415 0 10.227l0.12 0.12c0.234 0.234 0.482 0.446 0.739 0.641l2.386-2.386c-0.278-0.164-0.542-0.361-0.78-0.599l-0.121-0.121c-1.527-1.527-1.527-4.012 0-5.539l6.517-6.516c1.527-1.527 4.012-1.527 5.539 0l0.121 0.12c1.527 1.527 1.527 4.012 0 5.539l-2.948 2.948c0.512 1.264 0.754 2.611 0.733 3.955l4.559-4.559c2.812-2.812 2.812-7.415-0-10.227zM19.557 12.323c-0.234-0.234-0.482-0.446-0.739-0.641l-2.386 2.385c0.278 0.164 0.542 0.361 0.78 0.599l0.121 0.121c1.527 1.527 1.527 4.012 0 5.539l-6.517 6.517c-1.527 1.527-4.012 1.527-5.539 0l-0.121-0.121c-1.527-1.527-1.527-4.012 0-5.539l2.948-2.948c-0.512-1.264-0.754-2.611-0.733-3.955l-4.559 4.559c-2.812 2.812-2.812 7.415 0 10.228l0.12 0.12c2.813 2.812 7.415 2.812 10.228 0l6.516-6.517c2.812-2.812 2.812-7.415 0-10.228l-0.12-0.12z">
-                                </path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="表格 <ctrl-m>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M9.846 26.462v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM9.846 19.077v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM19.692 26.462v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM9.846 11.692v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM19.692 19.077v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM29.538 26.462v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM19.692 11.692v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM29.538 19.077v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM29.538 11.692v-3.692c0-0.346-0.269-0.615-0.615-0.615h-6.154c-0.346 0-0.615 0.269-0.615 0.615v3.692c0 0.346 0.269 0.615 0.615 0.615h6.154c0.346 0 0.615-0.269 0.615-0.615zM32 5.538v20.923c0 1.692-1.385 3.077-3.077 3.077h-25.846c-1.692 0-3.077-1.385-3.077-3.077v-20.923c0-1.692 1.385-3.077 3.077-3.077h25.846c1.692 0 3.077 1.385 3.077 3.077z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__n" aria-label="开始录音/结束录音"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M4.571 16c0 6.312 5.117 11.429 11.429 11.429s11.429-5.117 11.429-11.429v0c0-6.312-5.117-11.429-11.429-11.429s-11.429 5.117-11.429 11.429v0z">
-                                </path>
-                                <path
-                                        d="M16 30.857c-8.229 0-14.933-6.705-14.933-14.933s6.705-14.933 14.933-14.933 15.010 6.705 15.010 15.010c0 8.152-6.705 14.857-15.010 14.857zM16 0c-8.838 0-16 7.162-16 16s7.162 16 16 16 16-7.162 16-16-7.162-16-16-16z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__nw vditor-menu--current"
-                                 aria-label="编辑 &amp; 预览 <ctrl-p>"><svg version="1.1"
-                                                                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M11.429 6.095h-9.905c-0.842 0-1.524 0.682-1.524 1.524v1.524c0 0.841 0.682 1.524 1.524 1.524h9.905c0.841 0 1.524-0.682 1.524-1.524v-1.524c0-0.842-0.682-1.524-1.524-1.524zM11.429 13.714h-9.905c-0.842 0-1.524 0.682-1.524 1.524v1.524c0 0.841 0.682 1.524 1.524 1.524h9.905c0.841 0 1.524-0.682 1.524-1.524v-1.524c0-0.841-0.682-1.524-1.524-1.524zM11.429 21.333h-9.905c-0.842 0-1.524 0.682-1.524 1.524v1.524c0 0.841 0.682 1.524 1.524 1.524h9.905c0.841 0 1.524-0.682 1.524-1.524v-1.524c0-0.841-0.682-1.524-1.524-1.524zM30.476 6.095h-12.952c-0.841 0-1.524 0.682-1.524 1.524v16.762c0 0.841 0.682 1.524 1.524 1.524h12.952c0.841 0 1.524-0.682 1.524-1.524v-16.762c0-0.841-0.682-1.524-1.524-1.524z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__nw" aria-label="预览 <ctrl-⇧-p>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M0 16c3.037-5.864 9.058-9.802 16-9.802s12.963 3.938 15.953 9.703l0.047 0.1c-3.037 5.864-9.058 9.802-16 9.802s-12.963-3.938-15.953-9.703l-0.047-0.1zM16 22.531c3.607 0 6.531-2.924 6.531-6.531s-2.924-6.531-6.531-6.531v0c-3.607 0-6.531 2.924-6.531 6.531s2.924 6.531 6.531 6.531v0zM16 19.265c-1.804 0-3.265-1.461-3.265-3.265s1.461-3.265 3.265-3.265v0c1.804 0 3.265 1.461 3.265 3.265s-1.461 3.265-3.265 3.265v0z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__nw" aria-label="全屏 <ctrl-'>"><svg
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32px"
-                                    height="32px">
-                                <path d="M32 0v13l-5-5-6 6-3-3 6-6-5-5zM14 21l-6 6 5 5h-13v-13l5 5 6-6z"></path>
-                            </svg></div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__nw" aria-label="关于"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M23.273 27.636v2.909c0 0.795-0.659 1.455-1.455 1.455h-11.636c-0.795 0-1.455-0.659-1.455-1.455v-2.909c0-0.795 0.659-1.455 1.455-1.455h1.455v-8.727h-1.455c-0.795 0-1.455-0.659-1.455-1.455v-2.909c0-0.795 0.659-1.455 1.455-1.455h8.727c0.795 0 1.455 0.659 1.455 1.455v13.091h1.455c0.795 0 1.455 0.659 1.455 1.455zM20.364 1.455v4.364c0 0.795-0.659 1.455-1.455 1.455h-5.818c-0.795 0-1.455-0.659-1.455-1.455v-4.364c0-0.795 0.659-1.455 1.455-1.455h5.818c0.795 0 1.455 0.659 1.455 1.455z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div>
-                            <div class="vditor-tooltipped vditor-tooltipped__nw" aria-label="帮助"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                                <path
-                                        d="M19.652 25v6c0 0.55-0.45 1-1 1h-6c-0.55 0-1-0.45-1-1v-6c0-0.55 0.45-1 1-1h6c0.55 0 1 0.45 1 1zM27.552 10c0 4.75-3.225 6.575-5.6 7.9-1.475 0.85-2.4 2.575-2.4 3.3v0c0 0.55-0.425 1.2-1 1.2h-6c-0.55 0-0.9-0.85-0.9-1.4v-1.125c0-3.025 3-5.625 5.2-6.625 1.925-0.875 2.725-1.7 2.725-3.3 0-1.4-1.825-2.65-3.85-2.65-1.125 0-2.15 0.35-2.7 0.725-0.6 0.425-1.2 1.025-2.675 2.875-0.2 0.25-0.5 0.4-0.775 0.4-0.225 0-0.425-0.075-0.625-0.2l-4.1-3.125c-0.425-0.325-0.525-0.875-0.25-1.325 2.7-4.475 6.5-6.65 11.6-6.65 5.35 0 11.35 4.275 11.35 10z">
-                                </path>
-                            </svg> </div>
-                        </div>
-                        <div class="vditor-menu__br"></div>
-                    </div>
-                    <div class="vditor-content">
-                        <div class="vditor-textarea" placeholder="" name="vditor" contenteditable="true"></div>
-                        <div class="vditor-preview vditor-preview--both">
-                            <div class="vditor-reset" style="max-width: 768px;"></div>
-                        </div>
-                        <div class="vditor-counter">0/200</div>
-                        <div class="vditor-upload"></div>
-                        <div class="vditor-tip"></div>
-                        <ul class="vditor-hint" style="display: none;"></ul>
-                    </div>
-                </div>
-            </div>
+            <input type="text" name="comment_content" id="comment_content" class="form-control"
+                   placeholder="请输入评论">
             <div class="button-line">
                 <span id="error-info"></span>
                 <button type="button" id="publish-btn" onclick="check_comment()">发布</button>
@@ -444,100 +206,88 @@
             <div class="total-count">
                 共 <span id="comment-count"> </span> 条评论
             </div>
+
             <div class="comment-item">
                 <div class="user-img-box">
-                    <img src="../img/user.jpeg" id="user-img" alt="">
+                    <img src="辉夜.jpg"  alt="">
                 </div>
                 <div class="comment-box">
                     <div class="user-info">
-                        <span class="user-name">admin</span>
-                        <span class="publish-time">2019-08-27 00:02:57</span>
-                    </div>
+                        <span class="user-name" id="observer">
 
-                    <div class="reply-box">
-                        <div class="user-info">
-                            <span class="reply-user-name">引用 @abcde</span>
-                            <span class="publish-time">2019-08-27 00:01:43</span>
-                        </div>
-                        <div class="comment-content c-666" style="padding-bottom: 5px; padding-left: 10px">
-                            <p>? ? ?</p>
-                        </div>
+                        </span>
+                        <span class="publish-time" id="publish-time">
+
+                        </span>
+
                     </div>
                     <div class="comment-content c-666">
-                        <p>谢谢?</p>
-                    </div>
-                    <div class="icon-line">
-                        <a href="javascript:void(0)" class="comment-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment.svg');"
-                           onclick="show_reply(this)"></a>
-                        <span class="reply_count c-666">0</span>
-                        <a href="javascript:void(0)" class="liked-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/liked.svg');"
-                           onclick="like_comment(30)"></a>
-                        <span class="liked_count c-666">0</span>
-                    </div>
-                    <div class="reply-holder" style="display: none;">
-                        <input class="reply-btn" type="button" onclick="reply_comment(this,30,22,41)" value="回复">
+                        <p id="content1">
+
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <div class="dian">
+                <div id="zan1">
+                    <img src="good.jpg">
+                    <div id="num3">0</div>
+                </div>
+            </div>
+
+
             <div class="comment-item">
                 <div class="user-img-box">
-                    <img src="../img/user.jpeg" id="user-img" alt="">
+                    <img src="辉夜.jpg" alt="">
                 </div>
                 <div class="comment-box">
                     <div class="user-info">
-                        <span class="user-name">admin</span>
-                        <span class="publish-time">2019-08-27 00:02:11</span>
+                        <span class="user-name" id="observer2">
+
+                        </span>
+                        <span class="publish-time" id="publish-time2">
+
+                        </span>
                     </div>
 
                     <div class="comment-content c-666">
-                        <p>虽然没什么人访问，但我初心还在。</p>
-                    </div>
-                    <div class="icon-line">
-                        <a href="javascript:void(0)" class="comment-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment.svg');"
-                           onclick="show_reply(this)"></a>
-                        <span class="reply_count c-666">0</span>
-                        <a href="javascript:void(0)" class="liked-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/liked.svg');"
-                           onclick="like_comment(29)"></a>
-                        <span class="liked_count c-666">0</span>
-                    </div>
-                    <div class="reply-holder" style="display: none;">
-                        <input class="reply-btn" type="button" onclick="reply_comment(this,29,22,41)" value="回复">
+                        <p id="content2">
+
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="comment-item">
-                <div class="user-img-box">
-                    <img src="https://zhaoyangkun.gitee.io/blog-static/img/person.svg" id="user-img" alt="">
-                </div>
-                <div class="comment-box">
-                    <div class="user-info">
-                        <span class="user-name">abcde</span>
-                        <span class="publish-time">2019-08-27 00:01:43</span>
-                    </div>
 
-                    <div class="comment-content c-666">
-                        <p>? ? ?</p>
-                    </div>
-                    <div class="icon-line">
-                        <a href="javascript:void(0)" class="comment-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment.svg');"
-                           onclick="show_reply(this)"></a>
-                        <span class="reply_count c-666">1</span>
-                        <a href="javascript:void(0)" class="liked-icon"
-                           style="background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/liked.svg');"
-                           onclick="like_comment(28)"></a>
-                        <span class="liked_count c-666">1</span>
-                    </div>
-                    <div class="reply-holder" style="display: none;">
-                        <input class="reply-btn" type="button" onclick="reply_comment(this,28,27,41)" value="回复">
-                    </div>
+        <div class="dian">
+            <div id="zan2">
+                <img src="good.jpg">
+                <div id="num4">0</div>
+            </div>
+    </div>
+
+        <div class="comment-item">
+            <div class="user-img-box">
+
+            </div>
+            <div class="comment-box">
+                <div class="user-info">
+                        <span class="user-name" >
+                         User
+                        </span>
+                    <span class="publish-time">
+                        2020-x-x
+                        </span>
+                </div>
+
+                <div class="comment-content c-666">
+                    <p>
+                        更多评论
+                    </p>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <!--尾部-->
@@ -552,10 +302,6 @@
                                       class="foot-icon"></a>
                 </span>
         </div>
-    </div>
-    <div class="footer-line">Powerde By <a href="https://github.com/zhaoyangkun/Boundless-UI"
-                                           target="_blank">BoundlessUI</a> • © 2019</div>
-    <div class="footer-line">浙ICP备88888888号 <a href="" target="_blank">站点地图</a>
     </div>
 </footer>
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
@@ -613,7 +359,7 @@
         //页面加载完毕，就去数据库中获取数据
         jQuery.post("/all",function(rst){//处理响应的结果
             var title1="";
-            var json=rst[1];
+            var json=rst[0];
             title1+=json.article_title;
             jQuery("#title").html(title1);
         },"json");//表示返回数据的格式
@@ -634,30 +380,8 @@
     jQuery(function(){
         //页面加载完毕，就去数据库中获取数据
         jQuery.post("/all",function(rst){//处理响应的结果
-            var like="";
-            var json=rst[0];
-            like+=json.article_like_count;
-            jQuery("#like").html(like);
-        },"json");//表示返回数据的格式
-    });
-</script>
-<script>
-    jQuery(function(){
-        //页面加载完毕，就去数据库中获取数据
-        jQuery.post("/all",function(rst){//处理响应的结果
-            var collection="";
-            var json=rst[0];
-            collection+=json.article_collection_count;
-            jQuery("#collection").html(collection);
-        },"json");//表示返回数据的格式
-    });
-</script>
-<script>
-    jQuery(function(){
-        //页面加载完毕，就去数据库中获取数据
-        jQuery.post("/all",function(rst){//处理响应的结果
             var content="";
-            var json=rst[1];
+            var json=rst[0];
             content+=json.article_content;
             jQuery("#content").html(content);
         },"json");//表示返回数据的格式
@@ -666,12 +390,195 @@
 <script>
     jQuery(function(){
         //页面加载完毕，就去数据库中获取数据
-        jQuery.post("/all",function(rst){//处理响应的结果
-            var count="";
-            var json=rst[1];
-            count+=json.article_comment_count;
+        jQuery.post("/find",function(rst){//处理响应的结果
+            var count=rst.length;
             jQuery("#comment-count").html(count);
         },"json");//表示返回数据的格式
     });
+</script>
+<script>
+    function check_comment()
+    {
+        var comment_content=jQuery("#comment_content").val();
+        var date=new Date().toLocaleDateString();
+        //json格式的属性名称必须与后台对应
+        jQuery.post("/savecomment",{"content":comment_content,"date":date},function(rst){
+            alert(rst);
+            //如果发布成功，重新加载数据
+            if(rst=='发布成功')
+            {
+                //重新加载本页面
+                location.reload();
+            }
+        });
+    }
+</script>
+<script>
+    function doedit()
+    {
+        var title=document.getElementById('title').innerText;
+        var content=document.getElementById('content').innerText;
+        var id=1;
+        var date=new Date().toLocaleDateString();
+        jQuery.post("/edit", {"content": content, "title": title, "date":date, "id": id}, function (rst) {
+                alert(rst);
+                //如果发布成功，重新加载数据
+                if (rst == '修改成功') {
+                    //重新加载本页面
+                    location.reload();
+                }
+            });
+     }
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/find",function(rst){//处理响应的结果
+            var date="";
+            var json=rst[0];
+            date+=json.comment_date;
+            jQuery("#publish-time").html(date);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/find",function(rst){//处理响应的结果
+            var content="";
+                var json = rst[0];
+                content += json.comment_content;
+            jQuery("#content1").html(content);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/findobserver",function(rst){//处理响应的结果
+            var name="";
+            var json=rst[0];
+            name+=json.user_name;
+            jQuery("#observer").html(name);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/find",function(rst){//处理响应的结果
+            var date="";
+            var json=rst[1];
+            date+=json.comment_date;
+            jQuery("#publish-time2").html(date);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/find",function(rst){//处理响应的结果
+            var content="";
+            var json = rst[1];
+            content += json.comment_content;
+            jQuery("#content2").html(content);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/findobserver",function(rst){//处理响应的结果
+            var name1="";
+            var json=rst[1];
+            name1+=json.user_name;
+            jQuery("#observer2").html(name1);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        jQuery.post("/findwriter",function(rst){//处理响应的结果
+            var writer="";
+            var json=rst[0];
+            writer+=json.user_name;
+            jQuery("#writer").html(writer);
+        },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+var zan = document.getElementById('zan');
+var zan1 = document.getElementById('zan1');
+var zan2 = document.getElementById('zan2');
+var cai = document.getElementById('cai');
+var edit=document.getElementById("edit");
+var num1 = document.getElementById('num1');
+var num2 = document.getElementById('num2');
+var num3 = document.getElementById('num3');
+var num4 = document.getElementById('num4');
+var flag1 = 0;
+var flag2 = 0;
+var flag3=0;
+var flag4=0;
+zan.onclick = function() {
+if (flag1 == 0) {
+num1.innerHTML++;
+}
+if (flag1 == 1) {
+num1.innerHTML--;
+}
+if (flag1 == 2) {
+num1.innerHTML++;
+flag1 = 0;
+}
+flag1++;
+}
+cai.onclick = function() {
+if (flag2 == 0) {
+num2.innerHTML++;
+}
+if (flag2 == 1) {
+num2.innerHTML--;
+}
+if (flag2 == 2) {
+num2.innerHTML++;
+flag2 = 0;
+}
+flag2++;
+}
+zan1.onclick = function() {
+    if (flag3 == 0) {
+        num3.innerHTML++;
+    }
+    if (flag3 == 1) {
+        num3.innerHTML--;
+    }
+    if (flag3 == 2) {
+        num3.innerHTML++;
+        flag3 = 0;
+    }
+    flag3++;
+}
+zan2.onclick = function() {
+    if (flag4 == 0) {
+        num4.innerHTML++;
+    }
+    if (flag4 == 1) {
+        num4.innerHTML--;
+    }
+    if (flag4 == 2) {
+        num4.innerHTML++;
+        flag4 = 0;
+    }
+    flag4++;
+}
+edit.onclick=function(){
+    document.getElementById('content').contentEditable=true;
+    document.getElementById("save").style.display="block";
+}
+</script>
+<script>
+     document.getElementById("save").style.display="none";
 </script>
 </html>

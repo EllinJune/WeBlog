@@ -40,8 +40,6 @@ public class ArticleService {
     public boolean doUpdate (Map<String,String> map)
     {
         boolean flag=false;
-        //选择要添加监控的代码
-        //ctrl+alt+t 打开 surround with窗口 选择 try catch
         try {
             int r=articleMapper.updateArticle(map);
             if(r>0){
@@ -50,15 +48,6 @@ public class ArticleService {
         } catch (Exception e) {
             e.printStackTrace();
             //记录日志，写到文件中进行保存
-        }
-        return flag;
-    }
-    public boolean findById(int id){
-        boolean flag=false;
-        try {
-            //flag=articleMapper.findById(id);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
         }
         return flag;
     }
@@ -85,5 +74,62 @@ public class ArticleService {
             //记录日志，写到文件中进行保存
         }
         return list;
+    }
+    public List<Map<String,Object>>  doFindComment(){
+        List<Map<String,Object>> list=null;
+        try {
+            list= articleMapper.findcomment();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
+    public List<Map<String,Object>>  doFindWriter(){
+        List<Map<String,Object>> list=null;
+        try {
+            list= articleMapper.findwriter();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
+    public List<Map<String,Object>>  doFindObserver(){
+        List<Map<String,Object>> list=null;
+        try {
+            list= articleMapper.findobserver();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
+    public List<Map<String,Object>>  doFindId(String title){
+        List<Map<String,Object>> list=null;
+        try {
+            list= articleMapper.findId(title);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
+    public boolean doSaveSort(Map<String,String> map){
+        boolean flag=false;
+        try {
+            int r= articleMapper.saveSort(map);
+            if(r>0){
+                flag=true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return flag;
     }
 }

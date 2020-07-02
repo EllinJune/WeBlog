@@ -56,8 +56,8 @@ class UserInfoMapperTest {
     @Test
     void delete() {
         Map<String,String> map=new HashMap<>();
-        map.put("id","4");
-        int n=userInfoMapper.delete(4);
+        map.put("id","1");
+        int n=userInfoMapper.delete(10);
     }
 
     @Test
@@ -82,6 +82,15 @@ class UserInfoMapperTest {
         map.put("name","张老师");
         map.put("pwd","111");
         Map<String,Object> n = userInfoMapper.Login(map);
+        System.out.println(n);
+    }
+
+    @Test
+    void updatecode() {
+        Map<String,String> map=new HashMap<>();
+        map.put("name","zy");
+        map.put("pwd","111");
+        int n=userInfoMapper.updatecode(map);
         System.out.println(n);
     }
 }

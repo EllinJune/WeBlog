@@ -75,10 +75,21 @@ public class UserInfoController {
         return msg;
     }
 
+
+    @RequestMapping("/editpwd")
+    public String updateCode(@RequestParam Map<String,String> map){
+        String msg="修改失败";
+        boolean flag=userInfoService.doUpdateCode(map);
+        if(flag){
+            msg="修改成功";
+        }
+        return msg;
+    }
+
     /**
      * 通过名称返回map
      * @param map
-     * @return List
+     * @return map
      */
     @RequestMapping("/searchuser")
     public Map<String,Object> searchuser(@RequestParam Map<String,String> map){
@@ -87,12 +98,8 @@ public class UserInfoController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestParam Map<String,String> map){
-        String msg="登录失败";
-        Map<String,Object> info=userInfoService.Login(map);
-        if(info!=null&&map.size()>0){
-            msg="登录成功";
-        }
+    public Map<String,String> login(@RequestParam Map<String,String> map){
+        Map<String,String> msg = userInfoService.Login(map);
         return msg;
     }
 }

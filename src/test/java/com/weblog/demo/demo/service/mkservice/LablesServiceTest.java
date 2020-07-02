@@ -34,6 +34,10 @@ class LablesSetServiceTest {
 
     @Test
     void doDeleteLab() {
+        Map<String,String> map=new HashMap<>();
+        map.put("labid","1");
+        lableService.doDeleteLab(map);
+
     }
 
     @Test

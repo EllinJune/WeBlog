@@ -52,10 +52,10 @@
                 </span>
             </div>
             <div class="nb-a-holder-last">
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="mylogin">
                     <a class="a-login" href="login.html">登录</a>
                 </div>
-                <div class="nb-a-holder-small">
+                <div class="nb-a-holder-small" id="myreg">
                     <a class="a-login" href="register.html">注册</a>
                 </div>
             </div>
@@ -452,7 +452,7 @@
                         </li>
                         <li class="person-img-li">
                             <img alt="头像" id="person-img"
-                                src="../img/user.jpeg">
+                                src="../img/QQ.svg">
                         </li>
                         <li class="person-intro-detail gradient-text">
                             <h1>欢迎光临我的博客</h1>
@@ -594,6 +594,50 @@
 
         // 图片懒加载
         const lazyImage = new LazyImage('.lazy-image');
+
+
+
+
+
+        jQuery(function() {
+            if (getCookie("user_info") != "") {
+                // <div class="nb-a-holder-small" id="mylogin">
+                //     <a class="a-login" href="login.html">登录</a>
+                //     </div>
+                //     <div class="nb-a-holder-small" id="myreg">
+                //     <a class="a-login" href="register.html">注册</a>
+                //     </div>
+                var myname = getCookie("user_info");
+                jQuery("#mylogin").html("<a class=\"a-login\" href=\"userinfo.html\">"+myname+"</a>");
+                jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
+
+            }
+
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i].trim();
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            }
+
+        });
+
+        //清除cookie
+        function exit() {
+            setCookie("user_info","",-1);
+        }
+        function setCookie(cname,cvalue,exdays)
+        {
+            var d = new Date();
+            d.setTime(d.getTime()+(exdays*24*60*60*1000));
+            var expires = "expires="+d.toGMTString();
+            document.cookie = cname+"="+cvalue+"; "+expires;
+        }
+
     </script>
 </body>
 

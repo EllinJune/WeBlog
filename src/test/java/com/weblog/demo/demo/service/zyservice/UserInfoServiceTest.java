@@ -43,7 +43,7 @@ class UserInfoServiceTest {
     void doUpdate() {
         Map<String,String> map=new HashMap<>();
         map.put("id","2");
-        map.put("name","王老师");
+        map.put("name","李老师");
         map.put("pwd","111");
         map.put("profilephoto","zbd");
         map.put("regtime","2018-9-9 18:00:00");
@@ -75,7 +75,7 @@ class UserInfoServiceTest {
         Map<String,String> map=new HashMap<>();
         map.put("name","张老师");
         map.put("pwd","111");
-        Map<String,Object> n = userInfoService.Login(map);
+        Map<String,String> n = userInfoService.Login(map);
         System.out.println(n);
     }
 }

@@ -36,6 +36,7 @@ public class LablesService {
         boolean flag=false;
         try {
             int id=Integer.parseInt(map.get("labid"));
+            labMapper.deleteLabSet(id);
             int r=labMapper.deleteLab(id);
             if(r>0){
                 flag=true;

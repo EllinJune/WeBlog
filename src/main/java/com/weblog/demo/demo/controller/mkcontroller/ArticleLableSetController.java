@@ -18,7 +18,7 @@ public class ArticleLableSetController {
     @Resource
     private ArticleLableSetService artlabsetService;
 
-    @RequestMapping("/findall")
+    @RequestMapping("/findalllables")
     public List<Map<String,Object>> findAll() {
         List<Map<String,Object>> list=artlabsetService.findAll();
         return list;
@@ -65,6 +65,7 @@ public class ArticleLableSetController {
      */
     @RequestMapping("/deleteart")
     public String deleteArt(@RequestParam Map<String,String> map){
+        System.out.println(map);
         String msg="删除失败";
         boolean flag=artlabsetService.doDeleteArt(map);
         if(flag){

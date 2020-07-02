@@ -50,9 +50,9 @@ class LablesMapperTest {
         System.out.println(map);
     }
 
-    @Test
-    void deleteLab() {
-        int n = lablemapper.deleteLab(1);
-        //assertEquals(1,n);
-    }
+//    @Test
+//    void deleteLab() {
+//        int n = lablemapper.deleteLab(1);
+//        //assertEquals(1,n);
+//    }
 }

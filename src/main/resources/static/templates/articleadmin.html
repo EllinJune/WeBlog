@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>管理</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/pace-theme-flash.css">
+    <link rel="stylesheet" href="../css/d-audio.css">
+    <link rel="stylesheet" href="../css/myPagination.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="shortcut icon" href="../img/user.jpeg">
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style rel="stylesheet">
+        .lazy-image {
+            background: url('../img/loading.gif') no-repeat center;
+            background-size: 26% 35%;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--PC导航栏-->
+    <nav class="nav-bar-holder">
+        <div class="nav-bar" id="nav-bar">
+            <div class="logo-box">
+                <a href="index.html" class="blog-title ta-c"><img style="vertical-align: top;" alt="logo"
+                        src="../img/user.jpeg" /></a>
+            </div>
+            <div class="nb-a-holder" id="home"><a class="nb-a ta-c" href="index.html">首页</a></div>
+            <div class="nb-a-holder"><a class="nb-a ta-c" href="category.html">分类</a></div>
+            <div class="nb-a-holder"><a id="active" class="nb-a ta-c" href="tag.html">标签墙</a></div>
+            <div class="nb-a-holder"><a class="nb-a ta-c" href="archive.html">归档</a></div>
+            <div class="nb-a-holder"><a class="nb-a ta-c" href="link.html">友情链接</a></div>
+            <!--搜索框-->
+            <div id="search-nb">
+                <span class="search-s fl">
+                    <label for="search-input"></label><input class="fl" type="text" id="search-input"
+                        placeholder="请输入关键字">
+                    <a class="search-icon fl" onclick="search_by_key()" href="javascript:void(0);"></a>
+                </span>
+            </div>
+            <div class="nb-a-holder-last">
+                <div class="nb-a-holder-small">
+                    <a class="a-login" href="login.html">登录</a>
+                </div>
+                <div class="nb-a-holder-small">
+                    <a class="a-login" href="register.html">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--mobile导航栏-->
+    <nav class="mobile-nav">
+        <div class="logo-box">
+            <a href="index.html" class="blog-title ta-c">
+                <img style="vertical-align: top;" alt="logo"
+                    src="../img/user.jpeg" /></a>
+        </div>
+        <a id="mobile_cate" style="background-image: url('../img/cate.svg')" href="javascript:void(0);"></a>
+    </nav>
+    <ul id="nav-m-list">
+        <li id="cancel-li"><a class="fr" id="cancel" href="javascript:void(0);"></a></li>
+        <li id="m-img-li">
+            <img id="m-img" alt="苍茫误此生" src="../img/user.jpeg">
+        </li>
+        <li>
+            <span class="search-s fl">
+                <label for="search-input-m"></label><input class="fl" type="text" id="search-input-m" placeholder="关键词">
+                <a class="search-icon fl" onclick="m_search()" href="javascript:void(0);"></a>
+            </span>
+        </li>
+        <li><a class="w-h-100 fl" href="index.html">首页</a></li>
+        <li><a class="w-h-100 fl" href="login.html">登录</a></li>
+        <li><a class="w-h-100" href="register.html">注册</a></li>
+        <li><a class="w-h-100 fl" href="category.html">分类</a></li>
+        <li><a class="w-h-100 fl" href="tag.html">标签墙</a></li>
+        <li><a class="w-h-100 fl" href="archive.html">归档</a></li>
+        <li><a class="w-h-100 fl" href="link.html">友情链接</a></li>
+    </ul>
+    <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
+    <!--主体-->
+    <div class="big-container">
+        <article class="article">
+
+            <!--右容器-->
+            <div class="right-holder">
+
+                <div class="column-container">
+                    <ul class="column_box" id="like-box">
+                        <li class="column-title">
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl">管理</a></span>
+                        </li>
+                        <li class="column-category">
+                            <a href="articleadmin.html">
+                                博文管理
+                            </a>
+                        </li>
+                        <li class="column-category">
+                            <a href="photoadmin.html">
+                                图片管理
+                            </a>
+                        </li>
+                        <li class="column-category">
+                            <a href="commentadmin.html">
+                                评论管理
+                            </a>
+                        </li>
+                     
+                    </ul>
+                </div>
+            </div>
+
+            <!--左容器-->
+            <div class="result-box fl">
+                <!--文章内容-->
+                <div id="article-holder" style="width: 100%; float: left">
+                    <div id="container">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <td>文章编号</td>
+                    <td>用户ID</td>
+                    <td>文章标题</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+                    <!-- 删除的模态框 -->
+                    <div class="modal fade" tabindex="-1" role="dialog" id="delModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">提示</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" id="del_id">
+                                    <p id="del_msg"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" onclick="doDelete()">确定</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                <!--分页指示器-->
+                <div id="pagination" class="pagination fl"></div>
+            </div>
+            </div>
+        </article>
+    </div>
+    <!--尾部-->
+    <footer class="footer">
+        <div class="footer-line">
+            <div class="icon-center">
+                <span class="icon-box"><a id="github-icon" target="_blank" href="https://github.com/zhaoyangkun"
+                        class="foot-icon"></a>
+                </span>
+                <span class="icon-box"><a id="qq-icon" target="_blank"
+                        href="tencent://Message/?Uin=2295098032&amp;websiteName=q-zone.qq.com&amp;Menu=yes"
+                        class="foot-icon"></a>
+                </span>
+            </div>
+        </div>
+        <div class="footer-line">Powerde By <a href="https://github.com/zhaoyangkun/Boundless-UI"
+                target="_blank">BoundlessUI</a> • © 2019</div>
+        <div class="footer-line">浙ICP备88888888号 <a href="" target="_blank">站点地图</a>
+        </div>
+    </footer>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+    <script type="text/javascript" src="../js/pace.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/d-audio.js"></script>
+    <script type="text/javascript" src="../js/myPagination.js"></script>
+    <script type="text/javascript">
+        const pagination = new myPagination({
+            id: 'pagination',
+            curPage: 1, //初始页码
+            pageTotal: 3, //总页数
+            pageAmount: 10, //每页多少条
+            dataTotal: 29, //总共多少条数据
+            pageSize: 3, //可选,分页个数
+            //showPageTotalFlag: true, //是否显示数据统计
+            getPage: function (page) {
+                let url = window.location.href;
+                let index = url.indexOf('?');
+                if (index !== -1) {
+                    url = url.substring(0, index);
+                }
+                console.log("current page: ", page);
+            }
+        });
+    </script>
+    <script type="text/javascript" defer>
+        //音乐插件
+        const myAudio = new Daudio({
+            ele: '#d-audio',
+            src: 'https://zhaoyangkun.gitee.io/blog-static/music/迷人的危险.mp3',
+            imageurl: 'https://zhaoyangkun.gitee.io/blog-static/img/dance_flow.jpg',
+            name: '迷人的危险',
+            singer: 'dance flow',
+            // 是否显示进度信息
+            showprogress: true,
+            // 是否循环
+            loop: true,
+            // '' 就是默认状态， cricle则是初始化就是圆形且可以旋转
+            initstate: 'cricle',
+            next: function () {},
+            ended: function () {}
+        });
+        //myAudio.play();
+
+        //图片懒加载
+        const lazyImage = new LazyImage('.lazy-image');
+    </script>
+</body>
+<script src="/jquery/jquery-3.4.1.min.js"></script>
+<script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    jQuery(function(){
+        //页面加载完毕，就去数据库中获取数据
+        //          /all 请求的地址
+        jQuery.post("/aInfo",function(rst){//处理响应的结果
+            var body="";
+            for(var i=0;i<rst.length;i++)
+            {
+                var json=rst[i];
+                body+="<tr>";
+                body+="<td>"+json.article_id+"</td>";
+                body+="<td>"+json.user_id+"</td>";
+                body+="<td>"+json.article_title+"</td>";
+                body+="<td>";
+                body+="<a href='#' onclick='showDelModal(\""+json.article_id+"\",\""+json.article_title+"\")'>删除</a>&nbsp;&nbsp;";
+                body+="</td>";
+                body+="</tr>";
+            }
+            jQuery("#tbody").html(body);
+        },"json");//表示返回数据的格式
+    });
+
+    //如果是通过function定义的方法必须在jquery外面写
+    function showDelModal(id,name)
+    {
+        jQuery("#del_id").val(id);
+        jQuery("#del_msg").html(name);
+        jQuery("#delModal").modal("show");
+    }
+    function doDelete()
+    {
+        jQuery("#delModal").modal("hide");
+        var id=jQuery("#del_id").val();
+        //json格式的属性名称必须与后台对应
+        jQuery.post("/deleteArticles",{"id":id},function(rst){
+            alert(rst);
+            //如果删除成功，重新加载数据
+            if(rst=='删除成功')
+            {
+                //重新加载本页面
+                location.reload();
+            }
+        });
+    }
+</script>
+</html>

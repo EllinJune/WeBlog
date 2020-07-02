@@ -75,7 +75,7 @@ class UserInfoServiceTest {
         Map<String,String> map=new HashMap<>();
         map.put("name","张老师");
         map.put("pwd","111");
-        Map<String,Object> n = userInfoService.Login(map);
+        Map<String,String> n = userInfoService.Login(map);
         System.out.println(n);
     }
 }

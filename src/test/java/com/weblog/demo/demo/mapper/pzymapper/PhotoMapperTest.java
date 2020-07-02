@@ -20,7 +20,7 @@ public class PhotoMapperTest {
     private PhotoMapper photoMapper;
     @Test
     public void findById() {
-        Map<String,Object> map=photoMapper.findById(2);
+        Map<String,Object> map=photoMapper.findById(5);
         System.out.println(map);
     }
 

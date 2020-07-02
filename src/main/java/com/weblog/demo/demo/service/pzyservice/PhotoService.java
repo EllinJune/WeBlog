@@ -6,6 +6,8 @@ import com.weblog.demo.demo.mapper.pzymapper.PhotoSortSetMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +20,13 @@ import java.util.Map;
 public class PhotoService {
     @Resource
     private PhotoMapper photoMapper;
+    @Resource
     private PhotoSortMapper photoSortMapper;
+    @Resource
     private PhotoSortSetMapper photoSortSetMapper;
 
 
-    //相册的服务
+    //相册的服务：创建、改名、删除、找到用户的所有相册
     public boolean doCreateAlbum(Map<String,String> map){
         boolean flag=false;
 
@@ -78,7 +82,7 @@ public class PhotoService {
         return list;
     }
 
-    //图片服务
+    //图片服务:保存图片、删除图片、找到图片
     public boolean doSave(Map<String,String> map){
         boolean flag=false;
 
@@ -122,4 +126,20 @@ public class PhotoService {
     }
 
     //通过相册找到当下所有图片
+    public List<Map<String,Object>> findAllInAlbum(Map<String,String> map){
+        List<Map<String,Object>> list=new ArrayList<Map<String, Object>>();
+        try {
+            int id=Integer.parseInt(map.get("id"));
+            List<Map<String,Long>> photoList=photoSortSetMapper.findBySortId(id);
+            for (Map<String,Long> e : photoList){
+                int id1=Integer.parseInt(String.valueOf(e.get("photo_id")));
+                list.add(photoMapper.findById(id1));
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }

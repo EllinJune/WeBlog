@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +34,12 @@ public class PhotoSortSetMapperTest {
 
     @Test
     public void findBySortId() {
-        List<Map<String, String>> list=photoSortSetMapper.findBySortId(2);
+        List<Map<String, Long>> list=photoSortSetMapper.findBySortId(4);
+        Map<String,String> map=new HashMap<>();
         System.out.println(list);
+        for(Map<String, Long> e:list) {
+            System.out.println(e.get("photo_id"));
+        }
 
     }
 }

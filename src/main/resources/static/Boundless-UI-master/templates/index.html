@@ -153,30 +153,6 @@
                                 <a class="at-sort-comment-a c-666 fl">热门文章</a>
                             </span>
                         </li>
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
-<!--                        </li>-->
-<!--                        <li class="column-category">-->
-<!--                            <a href="article.html">极简的-->
-<!--                                <button>测试按钮1</button>-->
-<!--                                <button>测试按钮2</button>-->
-<!--                            </a>-->
-<!--                        </li>-->
 
                     </ul>
                 </div>
@@ -315,7 +291,7 @@
         const pagination = new myPagination({
             id: 'pagination',
             curPage: 1, //初始页码
-            pageTotal: 3, //总页数
+            pageTotal: 1, //总页数
             pageAmount: 10, //每页多少条
             dataTotal: 29, //总共多少条数据
             pageSize: 3, //可选,分页个数
@@ -346,6 +322,88 @@
 
         // 图片懒加载
         const lazyImage = new LazyImage('.lazy-image');
+
+        //加载所有文章
+        jQuery(function(){
+            jQuery.post("/findAllArts",function(rst){//处理响应的结果
+                var arrays = new Array();
+                for (var i = 0; i < rst.length;i++) {
+                    var jsontxt = rst[i];
+                    arrays[i] = parseInt(jsontxt.article_id);
+                }
+                bubbleSort1(arrays);
+                for (var i = 0; i < rst.length;i++) {
+                    for (var j = 0; j < rst.length;j++) {
+                        var count = i + 1;
+                        jQuery("#article-holder").val(count);
+                        if ((rst[j]).article_id == arrays[i]) {
+                            var json = rst[j];
+                            // var a = document.createElement("a");
+                            // a.id = "allart" + jQuery("#article-holder").val();
+                            // a.href = "article.html";
+                            // var li = document.createElement("li");
+                            // li.className = "column-category";
+                            // li.appendChild(a);
+
+                            var div1 = document.createElement("div");
+                            div1.className = "article-box";
+                            var div2 = document.createElement("div");
+                            div2.className = "ab-content";
+                            var div31 = document.createElement("div");
+                            div31.className = "article-tile";
+                            div31.id = "allarttitle" + count;
+                            var div32 = document.createElement("div");
+                            div32.className = "article-cate";
+                            var div33 = document.createElement("div");
+                            div33.className = "article-detail-box c-666";
+                            div33.id = "allart2" + count;
+                            var a1 = document.createElement("a");
+                            a1.href = "article.html";
+                            a1.className = "article-img-box";
+                            var a2 = document.createElement("a");
+                            a2.href = "article.html";
+                            var a3 = document.createElement("a");
+                            a3.id = "allartlab" + count;
+                            var span = document.createElement("span");
+                            span.className = "article-tail-box";
+                            var span21 = document.createElement("span");
+                            span21.className = "read-number c-999 fl";
+                            span21.id = "allartlooknumber" + count;
+                            var span22 = document.createElement("span");
+                            span22.className = "comment-number c-999 fl"
+                            span22.id = "allartcmtnumber" + count;
+                            var span23 = document.createElement("span");
+                            span23.className = "article-date c-999";
+                            span23.id = "allartdate" + count;
+                            var span24 = document.createElement("span");
+                            span24.className = "article-author one-line-overflow c-999";
+                            span24.id = "allartautor" + count;
+                            var i1 = document.createElement("i");
+                            i1.className = "fl";
+                            i1.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/read-index.svg')";
+                            var i2 = document.createElement("i");
+                            i2.className = "fl";
+                            i2.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment-index.svg')";
+                            div31.appendChild(a2);
+                            div32.appendChild(a3);
+                            span.appendChild(span21, i2, span22, span23, span24);
+                            div2.appendChild(a1);
+                            div2.appendChild(div31);
+                            div2.appendChild(div32);
+                            div2.appendChild(div33);
+                            div2.appendChild(span);
+                            div2.appendChild(i1);
+                            div1.appendChild(div2);
+                            div1.appendChild(i1);
+
+                            document.getElementById("article-holder").appendChild(div1);
+                            //jQuery("#" + "hotart" + jQuery("#article-holder").val()).text(json.article_title);
+                            jQuery("#" + "allarttitle" + count).text(json.article_title);
+                        }
+                    }
+                }
+            },"json");//表示返回数据的格式，返回的是list或map则可以设置为json，返回字符串不能设置为json格式
+        });
 
         //加载热门文章
         jQuery(function(){
@@ -383,6 +441,19 @@
             for (var i = 0; i < len; i++) {
                 for (var j = 0; j < len - 1 - i; j++) {
                     if (arr[j] < arr[j+1]) {        //相邻元素两两对比
+                        var temp = arr[j+1];        //元素交换
+                        arr[j+1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        function bubbleSort1(arr) {
+            var len = arr.length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len - 1 - i; j++) {
+                    if (arr[j] > arr[j+1]) {        //相邻元素两两对比
                         var temp = arr[j+1];        //元素交换
                         arr[j+1] = arr[j];
                         arr[j] = temp;
@@ -608,7 +679,7 @@
                 jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
 
             }
-
+            alert(getCookie("user_id"));
 
             function getCookie(cname) {
                 var name = cname + "=";

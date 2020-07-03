@@ -95,10 +95,10 @@
         </div>
         <div class="nb-a-holder-last">
             <div class="nb-a-holder-small">
-                <a class="a-login" href="login.html">登录</a>
+                <a class="a-login" href="login.html"id="mylogin">登录</a>
             </div>
             <div class="nb-a-holder-small">
-                <a class="a-login" href="register.html">注册</a>
+                <a class="a-login" href="register.html"id="myreg">注册</a>
             </div>
         </div>
     </div>
@@ -182,7 +182,7 @@
             <div class="prev-next">
                 <div class="p-div">
                     <span class="fl">上一篇：</span>
-                    <a class="one-line-overflow fl" href="article.html" id="prev-a">孤独与狂欢</a>
+                    <a class="one-line-overflow fl" href="article2.html" id="prev-a">孤独与狂欢</a>
                 </div>
             </div>
 
@@ -239,7 +239,7 @@
 
             <div class="comment-item">
                 <div class="user-img-box">
-                    <img src="辉夜.jpg" alt="">
+                    <img src="" id="user-photo" alt="">
                 </div>
                 <div class="comment-box">
                     <div class="user-info">
@@ -313,6 +313,9 @@
 <script type="text/javascript" src="../js/article-detail.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/x-mathjax-config">
+
+
+
         MathJax.Hub.Config({
             showProcessingMessages: false, //关闭js加载过程信息
             messageStyle: "none", //不显示信息
@@ -332,6 +335,7 @@
         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     </script>
 <script type="text/javascript" defer>
+
     //音乐插件
     const myAudio = new Daudio({
         ele: '#d-audio',
@@ -354,6 +358,38 @@
     const lazyImage = new LazyImage('.lazy-image');
 </script>
 </body>
+<script>
+    //登录状态增加
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    function exit() {
+        setCookie("user_info","",-1);
+        setCookie("user_id","",-1);
+    }
+    function setCookie(cname,cvalue,exdays)
+    {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname+"="+cvalue+"; "+expires;
+    }
+    jQuery(function() {
+        //加载个人信息
+        if (getCookie("user_info") != "") {
+            var myname = getCookie("user_info");
+            jQuery("#mylogin").html("<a class=\"a-login\" href=\"login.html\">"+myname+"</a>");
+            jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
+            showUserInfo(myname);
+        }
+    });
+</script>
 <script>
     jQuery(function(){
         //页面加载完毕，就去数据库中获取数据
@@ -401,16 +437,16 @@
     {
         var comment_content=jQuery("#comment_content").val();
         var date=new Date().toLocaleDateString();
-        //json格式的属性名称必须与后台对应
-        jQuery.post("/savecomment",{"content":comment_content,"date":date},function(rst){
-            alert(rst);
-            //如果发布成功，重新加载数据
-            if(rst=='发布成功')
-            {
-                //重新加载本页面
-                location.reload();
-            }
-        });
+        var name=getCookie("user_info");
+        jQuery.post("/findUserInfo",{"name":name},function(rst1) {
+            jQuery.post("/savecomment", {"content":comment_content, "date": date,"id":rst1.user_id}, function (rst) {//处理响应的结果
+                alert(rst);
+                if(rst=='发布成功')
+                {
+                    location.reload();
+                }
+            });
+        },"json");
     }
 </script>
 <script>
@@ -488,12 +524,17 @@
 <script>
     jQuery(function(){
         //页面加载完毕，就去数据库中获取数据
-        jQuery.post("/findobserver",function(rst){//处理响应的结果
-            var name1="";
-            var json=rst[1];
-            name1+=json.user_name;
-            jQuery("#observer2").html(name1);
+        var name=getCookie("user_info");
+        jQuery.post("/findUserInfo",{"name":name},function(rst){//处理响应的结果
+            var p=rst.user_profile_photo;
+            jQuery("#user-photo").html(p);
         },"json");//表示返回数据的格式
+    });
+</script>
+<script>
+    jQuery(function(){
+           var name1=getCookie("user_info");
+           jQuery("#observer2").html(name1);
     });
 </script>
 <script>
@@ -574,8 +615,8 @@ zan2.onclick = function() {
     flag4++;
 }
 edit.onclick=function(){
-    document.getElementById('content').contentEditable=true;
-    document.getElementById("save").style.display="block";
+            document.getElementById('content').contentEditable=true;
+            document.getElementById("save").style.display="block";
 }
 </script>
 <script>

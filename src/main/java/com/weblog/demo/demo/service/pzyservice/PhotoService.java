@@ -130,7 +130,7 @@ public class PhotoService {
         List<Map<String,Object>> list=new ArrayList<Map<String, Object>>();
         try {
             int id=Integer.parseInt(map.get("id"));
-            List<Map<String,Long>> photoList=photoSortSetMapper.findBySortId(id);
+            List<Map<String,Long>> photoList=photoSortSetMapper.findByUserId(id);
             for (Map<String,Long> e : photoList){
                 int id1=Integer.parseInt(String.valueOf(e.get("photo_id")));
                 list.add(photoMapper.findById(id1));

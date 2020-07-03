@@ -41,4 +41,8 @@ public interface PhotoSortSetMapper {
             " where photo_sort_id=#{id}")
     public List<Map<String,Long>> findBySortId(int id);
 
+    @Select("select photo_id from photo" +
+            " where user_id=#{id}")
+    public  List<Map<String,Long>> findByUserId(int id);
+
 }

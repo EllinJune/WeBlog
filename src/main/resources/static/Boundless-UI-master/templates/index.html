@@ -153,30 +153,30 @@
                                 <a class="at-sort-comment-a c-666 fl">热门文章</a>
                             </span>
                         </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
-                        <li class="column-category">
-                            <a href="article.html">极简的
-                                <button>测试按钮1</button>
-                                <button>测试按钮2</button>
-                            </a>
-                        </li>
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>-->
+<!--                        </li>-->
+<!--                        <li class="column-category">-->
+<!--                            <a href="article.html">极简的-->
+<!--                                <button>测试按钮1</button>-->
+<!--                                <button>测试按钮2</button>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
                     </ul>
                 </div>
@@ -346,6 +346,51 @@
 
         // 图片懒加载
         const lazyImage = new LazyImage('.lazy-image');
+
+        //加载热门文章
+        jQuery(function(){
+            jQuery.post("/findAllArts",function(rst){//处理响应的结果
+                var arrays = new Array();
+                for (var i = 0; i < rst.length;i++) {
+                    var jsontxt = rst[i];
+                    arrays[i] = parseInt(jsontxt.article_like_count);
+                }
+                bubbleSort(arrays);
+                for (var i = 0; i < 4;i++) {
+                    for (var j = 0; j < rst.length;j++) {
+                        var count = i + 1;
+                        jQuery("#like-box11").val(count);
+                        if ((rst[j]).article_like_count == arrays[i]) {
+                            var json = rst[j];
+                            var a = document.createElement("a");
+                            a.id = "hotart" + jQuery("#like-box11").val();
+                            a.href = "article.html";
+                            var li = document.createElement("li");
+                            li.className = "column-category";
+                            li.appendChild(a);
+
+                            document.getElementById("like-box11").appendChild(li);
+                            jQuery("#" + "hotart" + jQuery("#like-box11").val()).text(json.article_title);
+                        }
+                    }
+                }
+            },"json");//表示返回数据的格式，返回的是list或map则可以设置为json，返回字符串不能设置为json格式
+        });
+
+        //简单写一个排序算法
+        function bubbleSort(arr) {
+            var len = arr.length;
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < len - 1 - i; j++) {
+                    if (arr[j] < arr[j+1]) {        //相邻元素两两对比
+                        var temp = arr[j+1];        //元素交换
+                        arr[j+1] = arr[j];
+                        arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
 
 
         //一定要注意post传参的格式，是:{"":""}的形式，且有可能要与mapper的形参对应

@@ -97,4 +97,9 @@ public class ArticleController {
         Map<String,Object> map=articleService.doFindartByid(artid);
         return map;
     }
+    @RequestMapping("/findAllArts")
+    public List<Map<String,Object>> findAllArt(){
+        List<Map<String,Object>> list=articleService.doFindallarts();
+        return list;
+    }
 }

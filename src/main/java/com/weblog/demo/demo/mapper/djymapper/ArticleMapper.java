@@ -22,6 +22,10 @@ public interface ArticleMapper
     //寻找文章信息
     @Select("select article_title,article_content,article_like_count,article_comment_count,article_collection_count,article_date from articles")
     public List<Map<String,Object>> message();
+
+    @Select("select * from articles where article_id=#{id}")
+    public Map<String,Object> findartbyid(int id);
+
     //写文章
     @Insert("insert into articles(article_title,article_content,article_date)" +
             "value(#{article.title},#{article.content},#{article.date})")

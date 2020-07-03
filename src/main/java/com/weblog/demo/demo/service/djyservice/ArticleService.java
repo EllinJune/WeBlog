@@ -132,4 +132,16 @@ public class ArticleService {
         }
         return flag;
     }
+
+    public Map<String,Object>  doFindartByid(int artid){
+        Map<String,Object> map=null;
+        try {
+            map= articleMapper.findartbyid(artid);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return map;
+    }
 }

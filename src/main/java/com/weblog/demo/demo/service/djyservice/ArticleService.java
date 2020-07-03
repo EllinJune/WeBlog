@@ -144,4 +144,17 @@ public class ArticleService {
         }
         return map;
     }
+
+    public List<Map<String,Object>>  doFindallarts(){
+        List<Map<String,Object>> list=null;
+        try {
+            list= articleMapper.findallart();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
+
 }

@@ -25,6 +25,8 @@ public interface ArticleMapper
 
     @Select("select * from articles where article_id=#{id}")
     public Map<String,Object> findartbyid(int id);
+    @Select("select * from articles")
+    public List<Map<String,Object>> findallart();
 
     //写文章
     @Insert("insert into articles(article_title,article_content,article_date)" +

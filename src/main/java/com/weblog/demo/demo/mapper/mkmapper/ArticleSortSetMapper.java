@@ -29,6 +29,8 @@ public interface ArticleSortSetMapper {
     public String findByuseridFromArts(int artid);
     @Select("select article_id from article_sort_set where article_sort_id=#{n}")
     public List<String> findByArtSortid(int artsortid);
+    @Select("select user_id from articles where article_id=#{n}")
+    public int finduserByArtid(int artid);
 
     /**
      * @Param("cmt") 表示参数的别名，在sql语句中使用

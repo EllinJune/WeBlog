@@ -103,4 +103,10 @@ public class ArticleController {
         List<Map<String,Object>> list=articleService.doFindallarts();
         return list;
     }
+
+    @RequestMapping("/findArtById")
+    public Map<String,Object> findArtbyid(@RequestParam int artid){
+        Map<String,Object> list=articleService.doFindByartId(artid);
+        return list;
+    }
 }

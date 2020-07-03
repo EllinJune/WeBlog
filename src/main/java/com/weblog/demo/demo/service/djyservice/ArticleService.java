@@ -119,6 +119,17 @@ public class ArticleService {
         }
         return list;
     }
+    public Map<String,Object>  doFindByartId(int artid){
+        Map<String,Object> list=null;
+        try {
+            list= articleMapper.findartbyid(artid);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //记录日志，写到文件中进行保存
+        }
+        return list;
+    }
     public boolean doSaveSort(Map<String,String> map){
         boolean flag=false;
         try {

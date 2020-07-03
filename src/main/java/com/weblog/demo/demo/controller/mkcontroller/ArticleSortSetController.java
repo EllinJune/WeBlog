@@ -46,6 +46,11 @@ public class ArticleSortSetController {
         List<String> list=artsortsetService.finduserByid(sortid);
         return list;
     }
+    @RequestMapping("/finduserbyartid")
+    public int finduserByArtid(@RequestParam int artid){
+        int user=artsortsetService.finduserByartid(artid);
+        return user;
+    }
 
     /**
      *

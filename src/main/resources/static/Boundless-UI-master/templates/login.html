@@ -120,7 +120,7 @@
                 var name=jQuery("#user_name").val();
                 var pwd=jQuery("#pwd").val();
                 jQuery.post("/login",{"name":name,"pwd":pwd},function(rst) {
-                    if(rst.rst){
+                    if(rst.id!=null){
                         // var t=rst.right==0?'管理员':'';
                         var t=rst.right==0?'':'';
                         var cvalue=t+rst.name;
@@ -130,7 +130,7 @@
                         location.href="index.html";
                     }
                     else {
-                        alert(rst.rst);
+                        alert("登录失败");
                     }
 
                 },"json");

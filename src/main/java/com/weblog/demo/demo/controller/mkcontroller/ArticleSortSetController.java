@@ -41,6 +41,12 @@ public class ArticleSortSetController {
         return list;
     }
 
+    @RequestMapping("/finduserbysortid")
+    public List<String> finduserBySortid(@RequestParam int sortid){
+        List<String> list=artsortsetService.finduserByid(sortid);
+        return list;
+    }
+
     /**
      *
      * RequestParam 就是通知服务器，前端提交的数据封装成Map集合

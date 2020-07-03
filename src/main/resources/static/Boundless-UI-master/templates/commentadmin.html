@@ -54,10 +54,10 @@
             </div>
             <div class="nb-a-holder-last">
                 <div class="nb-a-holder-small">
-                    <a class="a-login" href="login.html">登录</a>
+                    <a class="a-login" href="login.html"id="mylogin">登录</a>
                 </div>
                 <div class="nb-a-holder-small">
-                    <a class="a-login" href="register.html">注册</a>
+                    <a class="a-login" href="register.html"id="myreg">注册</a>
                 </div>
             </div>
         </div>
@@ -237,6 +237,40 @@
 <script src="/jquery/jquery-3.4.1.min.js"></script>
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+    //登录状态增加
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    function exit() {
+        setCookie("user_info","",-1);
+        setCookie("user_id","",-1);
+    }
+    function setCookie(cname,cvalue,exdays)
+    {
+        var d = new Date();
+        d.setTime(d.getTime()+(exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname+"="+cvalue+"; "+expires;
+    }
+    jQuery(function() {
+        //加载个人信息
+        if (getCookie("user_info") != "") {
+            var myname = getCookie("user_info");
+            jQuery("#mylogin").html("<a class=\"a-login\" href=\"login.html\">"+myname+"</a>");
+            jQuery("#myreg").html("<a class=\"a-login\" onclick=\"exit()\"href=\"index.html\">退出</a>");
+            showUserInfo(myname);
+        }
+    });
+
+
+
     jQuery(function(){
         //页面加载完毕，就去数据库中获取数据
         //          /all 请求的地址

@@ -125,4 +125,16 @@ public class ArticleSortSetService {
         }
         return users;
     }
+
+    //根据art_id找到对应的作者
+    public int finduserByartid(int labid){
+        int user = 0;
+        try {
+            user=artsortsetMapper.finduserByArtid(labid);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

@@ -116,10 +116,10 @@
                             <img alt="头像" id="person-img"
                                 src="../img/QQ.svg">
                         </li>
-                        <li class="person-intro-detail gradient-text">
+                        <li class="person-intro-detail gradient-text" id="menu1">
                             <h1>欢迎光临我的博客</h1>
                         </li>
-                        <li class="person-intro-detail">
+                        <li class="person-intro-detail" id="menu2">
                             <h3>网站简介：基于 Go + Vue 的极简主义博客</h3>
                         </li>
                         <li class="person-intro-detail">
@@ -410,11 +410,13 @@
                     arrays[i] = parseInt(jsontxt.article_like_count);
                 }
                 bubbleSort(arrays);
-                for (var i = 0; i < 4;i++) {
+                var flag = 0;
+                for (var i = 0; (i < rst.length) && (flag < 4);i++) {
                     for (var j = 0; j < rst.length;j++) {
                         var count = i + 1;
                         jQuery("#like-box11").val(count);
-                        if ((rst[j].user_id == cookieuserid)&&((rst[j]).article_like_count == arrays[i])) {
+                        if (((rst[j]).article_like_count == arrays[i])&&(rst[j].user_id == cookieuserid)) {
+                            flag += 1;
                             var json = rst[j];
                             var a = document.createElement("a");
                             a.id = "hotart" + jQuery("#like-box11").val();
@@ -464,15 +466,19 @@
 
         //加载分类的内容，并实现点击分类的跳转功能
         jQuery(function(){
+            $.ajaxSetup({
+                async : false
+            });
             var cookieuserid=getCookie("user_id");
-
             jQuery.post("/findallartsorts",function(rst){//处理响应的结果
             for (var i = 0; i < rst.length;i++) {
                 var count = i + 1;
                 var json = rst[i];
+                document.getElementById("menu1").setAttribute("infor",json.article_sort_id);
+                document.getElementById("menu2").setAttribute("infor",json.article_sort_name);
+                //alert("外部" + json.article_sort_name);
                 jQuery.post("/finduserbysortid",{"sortid":parseInt(rst[i].article_sort_id)},function(userrst) {
                     if (userrst.indexOf(cookieuserid.toString()) != -1) {
-                        alert(userrst);
                         count++;
                         var a = document.createElement("a");
                         a.id = "artsort" + count;
@@ -524,78 +530,84 @@
         function loadArts(artsortid) {
             var cookieuserid=getCookie("user_id");
             jQuery("#article-holder").empty();
+            // $.ajaxSetup({
+            //     async : false
+            // });
 
             jQuery.post("/findartbysortid",{"sortid":artsortid},function(rst) {
                 for (var i = 0; i < rst.length; i++) {
                     var count = i + 1;
                     var json = rst[i];
 
-                    if (rst[i].user_id == cookieuserid) {
-                        jQuery.post("/findArtById", {"artid": json.article_id}, function (rst) {
-                            count++;  //加上这个是因为ajax异步操作，导致post内部的count不随着外部的for循环而改变
-                            var div1 = document.createElement("div");
-                            div1.className = "article-box";
-                            var div2 = document.createElement("div");
-                            div2.className = "ab-content";
-                            var div31 = document.createElement("div");
-                            div31.className = "article-tile";
-                            div31.id = "arttest" + count;
+                     jQuery.post("/finduserbyartid",{"artid":json.article_id},function(userrst1) {
+                         if (userrst1 == cookieuserid) {
 
-                            var div32 = document.createElement("div");
-                            div32.className = "article-cate";
-                            var div33 = document.createElement("div");
-                            div33.className = "article-detail-box c-666";
-                            div33.id = "art" + count;
-                            var a1 = document.createElement("a");
-                            a1.href = "article.html";
-                            a1.className = "article-img-box";
-                            var a2 = document.createElement("a");
-                            a2.href = "article.html";
-                            var a3 = document.createElement("a");
-                            a3.id = "lable" + count;
-                            var span = document.createElement("span");
-                            span.className = "article-tail-box";
-                            var span21 = document.createElement("span");
-                            span21.className = "read-number c-999 fl";
-                            span21.id = "looknumber" + count;
-                            var span22 = document.createElement("span");
-                            span22.className = "comment-number c-999 fl"
-                            span22.id = "cmtnumber" + count;
-                            var span23 = document.createElement("span");
-                            span23.className = "article-date c-999";
-                            span23.id = "date" + count;
-                            var span24 = document.createElement("span");
-                            span24.className = "article-author one-line-overflow c-999";
-                            span24.id = "autor" + count;
-                            var i1 = document.createElement("i");
-                            i1.className = "fl";
-                            i1.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/read-index.svg')";
-                            var i2 = document.createElement("i");
-                            i2.className = "fl";
-                            i2.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment-index.svg')";
+                             jQuery.post("/findArtById", {"artid": json.article_id}, function (rst) {
+                                 count++;  //加上这个是因为ajax异步操作，导致post内部的count不随着外部的for循环而改变
+                                 var div1 = document.createElement("div");
+                                 div1.className = "article-box";
+                                 var div2 = document.createElement("div");
+                                 div2.className = "ab-content";
+                                 var div31 = document.createElement("div");
+                                 div31.className = "article-tile";
+                                 div31.id = "arttest" + count;
 
-                            div31.appendChild(a2);
-                            div32.appendChild(a3);
-                            span.appendChild(span21, i2, span22, span23, span24);
-                            div2.appendChild(a1);
-                            div2.appendChild(div31);
-                            div2.appendChild(div32);
-                            div2.appendChild(div33);
-                            div2.appendChild(span);
-                            div2.appendChild(i1);
-                            div1.appendChild(div2);
-                            div1.appendChild(i1);
+                                 var div32 = document.createElement("div");
+                                 div32.className = "article-cate";
+                                 var div33 = document.createElement("div");
+                                 div33.className = "article-detail-box c-666";
+                                 div33.id = "art" + count;
+                                 var a1 = document.createElement("a");
+                                 a1.href = "article.html";
+                                 a1.className = "article-img-box";
+                                 var a2 = document.createElement("a");
+                                 a2.href = "article.html";
+                                 var a3 = document.createElement("a");
+                                 a3.id = "lable" + count;
+                                 var span = document.createElement("span");
+                                 span.className = "article-tail-box";
+                                 var span21 = document.createElement("span");
+                                 span21.className = "read-number c-999 fl";
+                                 span21.id = "looknumber" + count;
+                                 var span22 = document.createElement("span");
+                                 span22.className = "comment-number c-999 fl"
+                                 span22.id = "cmtnumber" + count;
+                                 var span23 = document.createElement("span");
+                                 span23.className = "article-date c-999";
+                                 span23.id = "date" + count;
+                                 var span24 = document.createElement("span");
+                                 span24.className = "article-author one-line-overflow c-999";
+                                 span24.id = "autor" + count;
+                                 var i1 = document.createElement("i");
+                                 i1.className = "fl";
+                                 i1.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/read-index.svg')";
+                                 var i2 = document.createElement("i");
+                                 i2.className = "fl";
+                                 i2.style = "background-image: url('https://zhaoyangkun.gitee.io/blog-static/img/comment-index.svg')";
 
-                            document.getElementById("article-holder").appendChild(div1);
-                            jQuery("#" + "arttest" + count).text(rst.article_title);
-                            jQuery("#" + "art" + count).text(rst.article_content);
-                            jQuery("#" + "looknumber" + count).text(rst.article_like_count);
-                            jQuery("#" + "cmtnumber" + count).text(rst.article_comment_count);
-                            jQuery("#" + "date" + count).text(rst.article_date);
-                            jQuery("#" + "lable" + count).text("作者：" + rst.user_id);
+                                 div31.appendChild(a2);
+                                 div32.appendChild(a3);
+                                 span.appendChild(span21, i2, span22, span23, span24);
+                                 div2.appendChild(a1);
+                                 div2.appendChild(div31);
+                                 div2.appendChild(div32);
+                                 div2.appendChild(div33);
+                                 div2.appendChild(span);
+                                 div2.appendChild(i1);
+                                 div1.appendChild(div2);
+                                 div1.appendChild(i1);
 
-                        }, "json");
-                    }
+                                 document.getElementById("article-holder").appendChild(div1);
+                                 jQuery("#" + "arttest" + count).text(rst.article_title);
+                                 jQuery("#" + "art" + count).text(rst.article_content);
+                                 jQuery("#" + "looknumber" + count).text(rst.article_like_count);
+                                 jQuery("#" + "cmtnumber" + count).text(rst.article_comment_count);
+                                 jQuery("#" + "date" + count).text(rst.article_date);
+                                 jQuery("#" + "lable" + count).text("作者：" + rst.user_id);
+
+                             }, "json");
+                         }
+                     });
                 }
             },"json");
         }

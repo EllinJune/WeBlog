@@ -1,5 +1,6 @@
 package com.weblog.demo.demo.controller.djycontroller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -87,14 +88,14 @@ public class ArticleController {
         return msg;
     }
     @RequestMapping("/findArticleId")
-    public List<Map<String,Object>> findId(String title){
-        List<Map<String,Object>> list=articleService.doFindId(title);
+    public Map<String,Object> findId(@RequestParam String t){
+        Map<String,Object> list=articleService.doFindId(t);
         return list;
     }
 
-    @RequestMapping("/findArtById")
-    public Map<String,Object> findArtByid(int artid){
-        Map<String,Object> map=articleService.doFindartByid(artid);
+    @RequestMapping("/findUserInfo")
+    public Map<String,Object> findUserInfo(@RequestParam String name){
+        Map<String,Object> map=articleService.doFindUserInfo(name);
         return map;
     }
 }

@@ -150,7 +150,7 @@
                     <ul class="column_box" id="like-box11">
                         <li class="column-title">
                             <span class="at-sort b-b-ece fl">
-                                <a class="at-sort-comment-a c-666 fl">点击排行</a>
+                                <a class="at-sort-comment-a c-666 fl">热门文章</a>
                             </span>
                         </li>
                         <li class="column-category">
@@ -172,16 +172,37 @@
                             <a href="article.html">极简的个人博客模板，支持响应式布局</a>
                         </li>
                         <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
+                            <a href="article.html">极简的
+                                <button>测试按钮1</button>
+                                <button>测试按钮2</button>
+                            </a>
                         </li>
-                                                <li class="column-category">
-                            <a href="article.html">极简的个人博客模板，支持响应式布局</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </article>
     </div>
+    <!-- 询问操作的模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="askModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">你打算对该条记录进行什么操作？</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ask_id">
+                    <p id="ask_msg"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="showEditModal()">重命名</button>
+                    <button type="button" class="btn btn-primary" onclick="showDelModal()">删除</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- 删除的模态框 -->
     <div class="modal fade" tabindex="-1" role="dialog" id="delModal">
         <div class="modal-dialog" role="document">
@@ -327,10 +348,7 @@
         const lazyImage = new LazyImage('.lazy-image');
 
 
-        // 有一个bug，不能连续快速的点击同一个分类数次，否则会加载出多余的几个空文章
-        //还有一个bug，右侧的按钮错排
-
-        //一定要注意post传参的格式，是:{"":""}的形式，且有可能要与controller的形参对应
+        //一定要注意post传参的格式，是:{"":""}的形式，且有可能要与mapper的形参对应
 
         //加载分类的内容，并实现点击分类的跳转功能
         jQuery(function(){
@@ -349,30 +367,21 @@
                 btn1.style="background-color: white";
                 btn1.setAttribute("infor",json.article_sort_id);
                 btn1.setAttribute("value",json.article_sort_name);
-                var btn2 = document.createElement("button");
-                btn2.id="delete" + count;
-                btn2.type="button";
-                btn2.className="btn btn-default";
-                btn2.style="background-color: white";
-                var divbtn = document.createElement("div");
-                divbtn.align="right";
+                var divbtn = document.createElement("a");
+                divbtn.style="display:inline";
+                divbtn.appendChild(a);
                 divbtn.appendChild(btn1);
-                divbtn.appendChild(btn2);
+
                 var li = document.createElement("li");
                 li.className="column-category";
 
 
-                li.appendChild(a);
                 li.appendChild(divbtn);
 
                 document.getElementById("like-box123").appendChild(li);
 
-                jQuery("#" + "rename" + count).text("重命名").click(function(){
-                    showEditModal(this.getAttribute('infor'),this.getAttribute('value'))
-                });
-
-                jQuery("#" + "delete" + count).text("删除").click(function(){
-                    showDelModal(1002)
+                jQuery("#" + "rename" + count).text("修改").click(function(){
+                    showAskModal(this.getAttribute('infor'),this.getAttribute('value'))
                 });
 
                 jQuery("#" + "artsort" + count).click(function () {
@@ -380,14 +389,10 @@
                 }).text(json.article_sort_name);
 
 
-
             }
             },"json");//表示返回数据的格式，返回的是list或map则可以设置为json，返回字符串不能设置为json格式
         });
 
-        function test(){
-            alert("这是一个测试");
-        }
 
         //加载某分类对应的文章列表
         function loadArts(artsortid) {
@@ -467,9 +472,9 @@
         }
 
         //如果是通过function定义的方法必须在jquery外面写
-        function showDelModal(id)
+        function showDelModal()
         {
-            jQuery("#like-box123").val(id);
+            //jQuery("#like-box123").val()
             jQuery("#delModal").modal("show");
         }
         function doDelete()
@@ -487,13 +492,32 @@
                 }
             });
         }
-        function showEditModal(sortid,sortname)
+        function showEditModal()
         {
-            jQuery("#like-box123").val(sortid);
-            jQuery("#editclass").val(sortname);
+            //jQuery("#like-box123").val(sortid);
+            jQuery("#editclass").val(jQuery("#askclass").val());
             jQuery("#editModal").modal("show");
         }
         function doEdit() {
+            jQuery("#editModal").modal("hide");
+            //获取数据
+            var id=jQuery("#like-box123").val();
+            var name=jQuery("#editclass").val();
+            jQuery.post("/editartsort",{"id":id,"name":name},function (rst) {
+                alert(rst);
+                if(rst=="修改成功")
+                {
+                    location.reload();
+                }
+            })
+        }
+        function showAskModal(sortid,sortname)
+        {
+            jQuery("#like-box123").val(sortid);
+            jQuery("#askclass").val(sortname);
+            jQuery("#askModal").modal("show");
+        }
+        function doAsk() {
             jQuery("#editModal").modal("hide");
             //获取数据
             var id=jQuery("#like-box123").val();

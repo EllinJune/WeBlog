@@ -1,0 +1,60 @@
+.dian {
+  display: flex;
+  flex-direction: row;
+}
+#zan1
+{
+  width: 55px;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #F3F3F3;
+  margin: 0 700px;
+  border-radius: 6px;
+  user-select: none;
+  cursor: pointer;
+}
+#zan2
+{
+  width: 55px;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #F3F3F3;
+  margin: 0 700px;
+  border-radius: 6px;
+  user-select: none;
+  cursor: pointer;
+}
+#edit,
+#zan,
+#cai {
+  width: 55px;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #F3F3F3;
+  margin: 0 10px;
+  border-radius: 6px;
+  user-select: none;
+  cursor: pointer;
+}
+#zan2 img,
+#edit img,
+#zan1 img,
+#zan img,
+#cai img {
+  width: 14px;
+  height: 14px;
+  margin: 5px 5px 0 5px;
+}
+#zan2 #num4,
+#zan1 #num3,
+#zan #num1,
+#cai #num2 {
+  line-height: 22px;
+  margin-right: 3px;
+}

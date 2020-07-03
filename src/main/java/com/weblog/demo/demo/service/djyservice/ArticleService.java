@@ -108,10 +108,10 @@ public class ArticleService {
         }
         return list;
     }
-    public List<Map<String,Object>>  doFindId(String title){
-        List<Map<String,Object>> list=null;
+    public Map<String,Object>  doFindId(String t){
+        Map<String,Object> list=null;
         try {
-            list= articleMapper.findId(title);
+            list= articleMapper.findId(t);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,10 +133,10 @@ public class ArticleService {
         return flag;
     }
 
-    public Map<String,Object>  doFindartByid(int artid){
-        Map<String,Object> map=null;
+    public Map<String,Object>  doFindUserInfo(String name){
+        Map<String,Object>  map=null;
         try {
-            map= articleMapper.findartbyid(artid);
+            map=articleMapper.findUserInfo(name);
 
         } catch (Exception e) {
             e.printStackTrace();

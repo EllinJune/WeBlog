@@ -57,7 +57,6 @@
                             <option value ="基本信息">基本信息</option>
                             <option value ="密码修改">密码修改</option>
                             <option value="关注列表">关注列表</option>
-                            <option value="其他信息">其他信息</option>
                     </select>
 
         </div>
@@ -101,9 +100,16 @@
 </ul>
 <div id="d-audio" class="d-audio" style="width: 150px; z-index: 99; position: fixed; bottom: 5px; left: 5px;"></div>
 <!--主体-->
+
 <div class="big-container">
     <article class="article">
+
         <!--友情链接-->
+        <ul class="link-box"id="search-box">
+
+        </ul>
+
+
         <ul class="link-box"id="user_box">
             <li>
                 <a href="https://www.cangmangai.cn/" target="_blank">苍茫误此生博客</a>
@@ -114,6 +120,7 @@
                 <button type="button" class="btn btn-default">删除</button>
 
             </li>
+
             <!--<li>-->
                 <!--<div class="form-group">-->
                     <!--<label>选择头像：</label>-->
@@ -432,6 +439,15 @@
     }
 
     function showFriList(cname) {
+        var searchbox="<div id=\"search-nb\">\n" +
+            "            <span class=\"search-s fl\">\n" +
+            "            <label for=\"search-input\"></label><input class=\"fl\" type=\"text\" id=\"search-input\"\n" +
+            "            placeholder=\"请输入要添加的好友名\">\n" +
+            "                <a class=\"search-icon fl\" onclick=\"addfriends()\" href=\"javascript:void(0);\"></a>\n" +
+            "            </span>\n" +
+            "            </div>"
+        jQuery("#search-box").html(searchbox);
+
 
         jQuery.post("/searchuser",{"name":cname},function(rst) {
 
@@ -493,6 +509,24 @@
 
     }
     function showElse(cname) {
+
+    }
+    function addfriends(){
+        var friendsname=jQuery("#search-input").val();
+        var id=getCookie("user_id");
+        jQuery.post("/searchuser",{"name":friendsname},function (rst) {
+            if(rst.user_id==null){
+                swal("无此用户");
+            }
+            else {
+                jQuery.post("/addfriend",{"id":id,"friendsid":rst.user_id,"note":"","status":1},function (rst){
+                    swal(rst);
+                })
+            }
+
+
+        })
+
 
     }
 

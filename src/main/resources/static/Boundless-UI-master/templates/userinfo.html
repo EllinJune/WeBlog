@@ -454,23 +454,32 @@
             jQuery.post("/allfriends", {"id":rst.user_id},function (rst1) {//处理响应的结果
 
                 var body = "";
-                for (var i = 0; i < rst1.length; i++) {
+                for (var i = 0; i < rst1.length;i++ ) {
                     var json = rst1[i];
                     if(json.user_status==1) {
-
+                        $.ajaxSetup({
+                            async : false
+                        });
                         jQuery.post("/userinfo", {"id": json.user_friends_id}, function (rst2) {
+
                             body += "<li>\n" +
                                 "                <a href=\"https://www.cangmangai.cn/\" target=\"_blank\">" +
                                 rst2.user_name +
                                 "</a>\n" +
                                 "                <input class=\"inp-input\" data-rule=\"^[\\w_-]{6,16}$\"\n" +
-                                "                data-rule-message=\"请输入6至16位普通字符\" data-block=\"true\" id=\"new_note_r\" name=\"new_pwd\" type=\"text\"\n" +
-                                "                placeholder=\"备注\"" +
-                                "                       value=\"" +
+                                "                data-rule-message=\"请输入6至16位普通字符\" data-block=\"true\" id=\"new_note_r" +
+                                i +
+                                "\" name=\"new_pwd\" type=\"text\"\n" +
+                                "                placeholder=\"" +
                                 json.user_note +
+                                "\"" +
+
+
                                 "\"" +
                                 " />\n" +
                                 "<button type=\"button\" class=\"btn btn-default\"onclick=\"upDateNote(" +
+                                   i +
+                                ","+
                                 rst.user_id +
                                 "," +
                                 rst2.user_id +
@@ -486,18 +495,16 @@
 
                         });
                     }
-
                 }
             }, "json");//表示返回数据的格式
 
         });
 
     }
-    function upDateNote(user_id,user_friends_id){
-        var newnote=jQuery("#new_note_r").val();
+    function upDateNote(i,user_id,user_friends_id){
+        var newnote=jQuery("#new_note_r"+i).val();
         jQuery.post("/editnote", {"id":user_id,"friendsid":user_friends_id,"note":newnote},function (rst) {
-            alert("修改成功");
-
+            alert(newnote);
         });
 
     }
@@ -520,10 +527,14 @@
             }
             else {
                 jQuery.post("/addfriend",{"id":id,"friendsid":rst.user_id,"note":"","status":1},function (rst){
-                    swal(rst);
-                })
-            }
 
+                })
+                jQuery.post("/editstatus", {"id":id,"friendsid":rst.user_id,"status":1},function (rst1) {
+                swal("添加成功");
+
+                });
+            }
+        window.location.reload();
 
         })
 

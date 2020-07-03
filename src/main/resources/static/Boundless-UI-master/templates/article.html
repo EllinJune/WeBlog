@@ -239,7 +239,7 @@
 
             <div class="comment-item">
                 <div class="user-img-box">
-                    <img src="" id="user-photo" alt="">
+                    <img id="user-photo">
                 </div>
                 <div class="comment-box">
                     <div class="user-info">
@@ -437,16 +437,26 @@
     {
         var comment_content=jQuery("#comment_content").val();
         var date=new Date().toLocaleDateString();
+        var title=document.getElementById('title').innerText;
         var name=getCookie("user_info");
+        if(name=='')
+            alert("请先登录！");
+        else
         jQuery.post("/findUserInfo",{"name":name},function(rst1) {
-            jQuery.post("/savecomment", {"content":comment_content, "date": date,"id":rst1.user_id}, function (rst) {//处理响应的结果
-                alert(rst);
-                if(rst=='发布成功')
-                {
-                    location.reload();
-                }
+            jQuery.post("/findArticleId",{"t":title},function(rst2) {
+                jQuery.post("/savecomment", {
+                    "content": comment_content,
+                    "date": date,
+                    "id": rst1.user_id,
+                    "aId":rst2.article_id
+                }, function (rst) {//处理响应的结果
+                    alert(rst);
+                    if (rst == '发布成功') {
+                        location.reload();
+                    }
+                });
             });
-        },"json");
+        });
     }
 </script>
 <script>
@@ -454,9 +464,9 @@
     {
         var title=document.getElementById('title').innerText;
         var content=document.getElementById('content').innerText;
-        var id=1;
         var date=new Date().toLocaleDateString();
-        jQuery.post("/edit", {"content": content, "title": title, "date":date, "id": id}, function (rst) {
+        jQuery.post("/findArticleId",{"t":title},function (rst0) {
+        jQuery.post("/edit", {"content": content, "title": title, "date":date, "id":rst0.article_id}, function (rst) {
                 alert(rst);
                 //如果发布成功，重新加载数据
                 if (rst == '修改成功') {
@@ -464,6 +474,7 @@
                     location.reload();
                 }
             });
+     });
      }
 </script>
 <script>
@@ -526,9 +537,11 @@
         //页面加载完毕，就去数据库中获取数据
         var name=getCookie("user_info");
         jQuery.post("/findUserInfo",{"name":name},function(rst){//处理响应的结果
-            var p=rst.user_profile_photo;
-            jQuery("#user-photo").html(p);
-        },"json");//表示返回数据的格式
+            var p=
+            rst.user_profile_photo
+            ;
+            document.getElementById('user-photo').src=p;
+        });//表示返回数据的格式
     });
 </script>
 <script>
@@ -614,12 +627,26 @@ zan2.onclick = function() {
     }
     flag4++;
 }
-edit.onclick=function(){
-            document.getElementById('content').contentEditable=true;
-            document.getElementById("save").style.display="block";
+edit.onclick=function() {
+    var name = getCookie("user_info");
+    var title = document.getElementById("title").innerText;
+    jQuery.post("/findUserInfo", {"name": name}, function (rst) {
+        var id1 = rst.user_id;
+        jQuery.post("/findArticleId", {"t": title}, function (rst2) {
+            var id2 = rst2.user_id;
+            if (id1 == id2) {
+                document.getElementById('content').contentEditable = true;
+                document.getElementById("save").style.display = "block";
+            }
+            else alert("没有编辑权限！");
+        })
+    })
 }
 </script>
 <script>
      document.getElementById("save").style.display="none";
+     var name=getCookie("user_info");
+     if(name=="")
+     document.getElementById("user-photo").style.display="none";
 </script>
 </html>

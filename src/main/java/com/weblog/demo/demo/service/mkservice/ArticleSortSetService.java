@@ -6,6 +6,7 @@ import com.weblog.demo.demo.mapper.mkmapper.CommentsMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -103,5 +104,25 @@ public class ArticleSortSetService {
             e.printStackTrace();
         }
         return artlabset;
+    }
+
+    //根据art_sort_id找到对应的作者列表
+    public List<String> finduserByid(int labid){
+        List<String> arts = null;
+        List<String> users = new ArrayList<String>();
+        try {
+            arts=artsortsetMapper.findByArtSortid(labid);
+
+            for (int i = 0; i < arts.size(); i++){
+                try{
+                    users.add(artsortsetMapper.findByuseridFromArts(Integer.parseInt(arts.get(i))));
+                }catch(NumberFormatException e){
+                    e.printStackTrace();
+                }
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 }

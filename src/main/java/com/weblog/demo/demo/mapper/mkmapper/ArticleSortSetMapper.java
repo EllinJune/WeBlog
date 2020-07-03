@@ -23,6 +23,12 @@ public interface ArticleSortSetMapper {
     @Select("select * from article_sort_set where article_sort_id=#{n}")
     public List<Map<String,Object>> findByLabid(int artsortid);
     //将来数据来自页面，都是string类型
+    @Select("select * from articles where article_id=#{n}")
+    public List<Map<String,Object>> findByartidFromArts(int artid);
+    @Select("select user_id from articles where article_id=#{n}")
+    public String findByuseridFromArts(int artid);
+    @Select("select article_id from article_sort_set where article_sort_id=#{n}")
+    public List<String> findByArtSortid(int artsortid);
 
     /**
      * @Param("cmt") 表示参数的别名，在sql语句中使用

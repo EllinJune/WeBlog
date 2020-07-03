@@ -8,8 +8,8 @@ import java.util.Map;
 public interface ArticleMapper
 {
     //寻找文章id
-    @Select("select article_id from articles where article_title=#{title}")
-    public List<Map<String,Object>> findId(String title);
+    @Select("select * from articles where article_title=#{t}")
+    public Map<String,Object> findId(@Param("t") String t);
     //寻找评论者
     @Select("select user_name from comments a INNER JOIN users b on a.user_id=b.user_id")
     public List<Map<String,Object>> findobserver();
@@ -28,6 +28,10 @@ public interface ArticleMapper
     @Select("select * from articles")
     public List<Map<String,Object>> findallart();
 
+    //通过名字寻找用户信息
+    @Select("select * from users where user_name=#{name}")
+    public Map<String,Object> findUserInfo(@Param("name")String name);
+
     //写文章
     @Insert("insert into articles(article_title,article_content,article_date)" +
             "value(#{article.title},#{article.content},#{article.date})")
@@ -36,8 +40,8 @@ public interface ArticleMapper
             "value(#{sort.sort_name})")
     public int saveSort(@Param("sort") Map<String,String> sort);
     //写评论
-    @Insert("insert into comments(comment_content,comment_date)" +
-            "value(#{c.content},#{c.date})")
+    @Insert("insert into comments(comment_content,comment_date,user_id,article_id)" +
+            "value(#{c.content},#{c.date},#{c.id},#{c.aId})")
     public int saveComment(@Param("c") Map<String,String> c);
     //编辑文章
     @Update("update articles " +

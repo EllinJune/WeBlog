@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/myPagination.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="shortcut icon" href="../img/user.jpeg">
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <style rel="stylesheet">
         .lazy-image {
             background: url('../img/loading.gif') no-repeat center;
@@ -136,7 +137,10 @@
                 <div class="column-container">
                     <ul class="column_box" id="like-box123">
                         <li class="column-title">
-                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl">分类</a></span>
+                            <span class="at-sort b-b-ece fl"><a class="at-sort-comment-a c-666 fl">分类</a>
+                            <button type="button" class="btn btn-default" id="addsort" onclick="showAddModal()">新增分类</button>
+                            </span>
+
                         </li>
 
                     </ul>
@@ -178,6 +182,88 @@
             </div>
         </article>
     </div>
+    <!-- 删除的模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="delModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">确定删除该条分类？</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="del_id">
+                    <p id="del_msg"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="doDelete()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 修改的模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="editModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_id">
+                    <form class="form-horizontal">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label col-lg-2">修改后:</label>
+                            <div class="col-lg-8">
+                                <input type="text" name="no" id="editclass" class="form-control"
+                                       placeholder="请输入修改后的分类名称">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="doEdit()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 增加的模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="addModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="add_id">
+                    <form class="form-horizontal">
+                        <div class="form-group form-group-lg">
+                            <label class="control-label col-lg-2">分类id:</label>
+                            <div class="col-lg-8">
+                                <input type="text" name="no" id="addclassid" class="form-control"
+                                       placeholder="请输入增加的分类id">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="control-label col-lg-2">分类名称:</label>
+                            <div class="col-lg-8">
+                                <input type="text" name="no" id="addclassname" class="form-control"
+                                       placeholder="请输入增加的分类名称">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" onclick="doAdd()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!--尾部-->
     <footer class="footer">
         <div class="footer-line">
@@ -202,6 +288,7 @@
     <script type="text/javascript" src="../js/base.js"></script>
     <script type="text/javascript" src="../js/d-audio.js"></script>
     <script type="text/javascript" src="../js/myPagination.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         // 分页
         const pagination = new myPagination({
@@ -240,14 +327,8 @@
         const lazyImage = new LazyImage('.lazy-image');
 
 
-        // jQuery(function(){
-        //     alert("125");
-        //     jQuery.post("/deleteart",{'nnn':'1221'},function(rst) {
-        //         alert("123"+rst);
-        //     });//你返回的是字符串，无法转为json，报错了，把 json，去掉
-        //
-        //     alert("126");
-        // })
+        // 有一个bug，不能连续快速的点击同一个分类数次，否则会加载出多余的几个空文章
+        //还有一个bug，右侧的按钮错排
 
         //一定要注意post传参的格式，是:{"":""}的形式，且有可能要与controller的形参对应
 
@@ -261,18 +342,52 @@
                 var a=document.createElement("a");
                 a.id = "artsort" + count;
                 a.setAttribute("infor",json.article_sort_id);
+                var btn1=document.createElement("button");
+                btn1.id = "rename" + count;
+                btn1.type="button";
+                btn1.className="btn btn-default";
+                btn1.style="background-color: white";
+                btn1.setAttribute("infor",json.article_sort_id);
+                btn1.setAttribute("value",json.article_sort_name);
+                var btn2 = document.createElement("button");
+                btn2.id="delete" + count;
+                btn2.type="button";
+                btn2.className="btn btn-default";
+                btn2.style="background-color: white";
+                var divbtn = document.createElement("div");
+                divbtn.align="right";
+                divbtn.appendChild(btn1);
+                divbtn.appendChild(btn2);
                 var li = document.createElement("li");
                 li.className="column-category";
+
+
                 li.appendChild(a);
+                li.appendChild(divbtn);
+
                 document.getElementById("like-box123").appendChild(li);
+
+                jQuery("#" + "rename" + count).text("重命名").click(function(){
+                    showEditModal(this.getAttribute('infor'),this.getAttribute('value'))
+                });
+
+                jQuery("#" + "delete" + count).text("删除").click(function(){
+                    showDelModal(1002)
+                });
 
                 jQuery("#" + "artsort" + count).click(function () {
                     loadArts(this.getAttribute('infor'));//直接传参传不进去，把内容放进控件的属性中再取出达到传参的效果
                 }).text(json.article_sort_name);
 
+
+
             }
             },"json");//表示返回数据的格式，返回的是list或map则可以设置为json，返回字符串不能设置为json格式
         });
+
+        function test(){
+            alert("这是一个测试");
+        }
 
         //加载某分类对应的文章列表
         function loadArts(artsortid) {
@@ -299,10 +414,10 @@
                         div33.className = "article-detail-box c-666";
                         div33.id = "art" + count;
                         var a1 = document.createElement("a");
-                        a1.href = "index.html";
+                        a1.href = "article.html";
                         a1.className = "article-img-box";
                         var a2 = document.createElement("a");
-                        a2.href = "omdex.html";
+                        a2.href = "article.html";
                         var a3 = document.createElement("a");
                         a3.id = "lable" + count;
                         var span = document.createElement("span");
@@ -351,26 +466,63 @@
             },"json");
         }
 
-
-        // jQuery(function(){
-        //     jQuery("#lable1").click(function(){
-        //         alert(location.href="index.html");
-        //
-        //         var name=jQuery("#user_name").val();
-        //         jQuery.post("/findall",{"name":name,"pwd":pwd},function(rst) {
-        //             if(rst.rst){
-        //                 var t=rst.right==0?'管理员':'';
-        //                 var cvalue=t+rst.name;
-        //                 location.href="index.html";
-        //             }
-        //             else {
-        //                 alert(rst.rst);
-        //             }
-        //
-        //         },"json");
-        //     });
-        // });
-
+        //如果是通过function定义的方法必须在jquery外面写
+        function showDelModal(id)
+        {
+            jQuery("#like-box123").val(id);
+            jQuery("#delModal").modal("show");
+        }
+        function doDelete()
+        {
+            jQuery("#delModal").modal("hide");
+            var id=jQuery("#like-box123").val();
+            //json格式的属性名称必须与后台对应
+            jQuery.post("/deleteartsort",{"id":id},function(rst){
+                alert(rst);
+                //如果删除成功，重新加载数据
+                if(rst=='删除成功')
+                {
+                    //重新加载本页面
+                    location.reload();
+                }
+            });
+        }
+        function showEditModal(sortid,sortname)
+        {
+            jQuery("#like-box123").val(sortid);
+            jQuery("#editclass").val(sortname);
+            jQuery("#editModal").modal("show");
+        }
+        function doEdit() {
+            jQuery("#editModal").modal("hide");
+            //获取数据
+            var id=jQuery("#like-box123").val();
+            var name=jQuery("#editclass").val();
+            jQuery.post("/editartsort",{"id":id,"name":name},function (rst) {
+                alert(rst);
+                if(rst=="修改成功")
+                {
+                    location.reload();
+                }
+            })
+        }
+        function showAddModal()
+        {
+            jQuery("#addModal").modal("show");
+        }
+        function doAdd() {
+            jQuery("#addModal").modal("hide");
+            //获取数据
+            var id=jQuery("#addclassid").val();
+            var name=jQuery("#addclassname").val();
+            jQuery.post("/saveartsort",{"id":id,"name":name},function (rst) {
+                alert(rst);
+                if(rst=="增加成功")
+                {
+                    location.reload();
+                }
+            })
+        }
 
 
 

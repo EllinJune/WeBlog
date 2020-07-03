@@ -37,8 +37,8 @@ public class ArticleSortService {
         boolean flag=false;
         try {
             int id=Integer.parseInt(map.get("id"));
-            artsortMapper.deleteLabSet(id);
-            int r=artsortMapper.deleteLab(id);
+            artsortMapper.deleteLab(id);
+            int r=artsortMapper.deleteLabSet(id);
             if(r>0){
                 flag=true;
             }

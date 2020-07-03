@@ -138,6 +138,7 @@ public class UserInfoService {
                 user.put("pwd",String.valueOf(realuser.get("user_pwd")));
                 user.put("rst","true");
                 user.put("right",String.valueOf(realuser.get("user_right")));
+                user.put("id",String.valueOf(realuser.get("user_id")));
             }else{
                 user.put("rst","false");
             }

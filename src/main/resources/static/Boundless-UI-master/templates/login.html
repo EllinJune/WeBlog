@@ -124,7 +124,9 @@
                         // var t=rst.right==0?'管理员':'';
                         var t=rst.right==0?'':'';
                         var cvalue=t+rst.name;
+                        var cvalue1=rst.id;
                         setCookie("user_info",cvalue,2);
+                        setCookie("user_id",cvalue1,2);
                         location.href="index.html";
                     }
                     else {

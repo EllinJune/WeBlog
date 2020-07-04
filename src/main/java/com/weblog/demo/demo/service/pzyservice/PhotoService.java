@@ -27,6 +27,12 @@ public class PhotoService {
 
 
     //相册的服务：创建、改名、删除、找到用户的所有相册
+
+    /**
+     *
+     * @param map
+     * @return
+     */
     public boolean doCreateAlbum(Map<String,String> map){
         boolean flag=false;
 
@@ -41,6 +47,11 @@ public class PhotoService {
         return flag;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public boolean doUpdateAlbum(Map<String,String> map){
         boolean flag=false;
 
@@ -55,6 +66,11 @@ public class PhotoService {
         return flag;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public boolean doDeleteAlbum(Map<String,String> map){
         boolean flag=false;
         try {
@@ -69,6 +85,11 @@ public class PhotoService {
         return flag;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public List<Map<String,Object>> findAlbumByUserId(Map<String,String> map){
         List<Map<String,Object>> list=null;
 
@@ -83,6 +104,12 @@ public class PhotoService {
     }
 
     //图片服务:保存图片、删除图片、找到图片
+
+    /**
+     *
+     * @param map
+     * @return
+     */
     public boolean doSave(Map<String,String> map){
         boolean flag=false;
 
@@ -97,6 +124,11 @@ public class PhotoService {
         return flag;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public boolean doDelete(Map<String,String> map){
         boolean flag=false;
 
@@ -112,6 +144,11 @@ public class PhotoService {
         return flag;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     public Map<String,Object> findById(Map<String,String> map){
         Map<String,Object> photo=null;
 
@@ -126,6 +163,12 @@ public class PhotoService {
     }
 
     //通过相册找到当下所有图片
+
+    /**
+     *
+     * @param map
+     * @return
+     */
     public List<Map<String,Object>> findAllInAlbum(Map<String,String> map){
         List<Map<String,Object>> list=new ArrayList<Map<String, Object>>();
         try {

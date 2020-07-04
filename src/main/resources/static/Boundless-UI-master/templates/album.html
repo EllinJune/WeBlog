@@ -93,7 +93,7 @@
  		    <li><a href="#">删除相册</a></li>
  		    <li role="separator" class="divider"></li> -->
  		    <li><a href="#">上传图片<input type="file" id="file" accept="image/*"><br>
- 				<button type="button" id="btn_up">上传</button>
+ 				<button type="button" class="btn" id="btn_up">上传</button>
  				</a>
  			</li>
  			
@@ -166,7 +166,7 @@
     });
 
 	jQuery(function(){
-		var id=1
+		var id=getCookie("user_id")
 		jQuery.post("/show",{"id":id},function(rst){
 			
 			var body="";

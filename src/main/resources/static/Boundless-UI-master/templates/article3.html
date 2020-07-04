@@ -395,7 +395,7 @@
         //页面加载完毕，就去数据库中获取数据
         jQuery.post("/all",function(rst){//处理响应的结果
             var title1="";
-            var json=rst[0];
+            var json=rst[2];
             title1+=json.article_title;
             jQuery("#title").html(title1);
         },"json");//表示返回数据的格式
@@ -406,7 +406,7 @@
         //页面加载完毕，就去数据库中获取数据
         jQuery.post("/all",function(rst){//处理响应的结果
             var date="";
-            var json=rst[1];
+            var json=rst[2];
             date+=json.article_date;
             jQuery("#write-time").html(date);
         },"json");//表示返回数据的格式
@@ -417,7 +417,7 @@
         //页面加载完毕，就去数据库中获取数据
         jQuery.post("/all",function(rst){//处理响应的结果
             var content="";
-            var json=rst[1];
+            var json=rst[2];
             content+=json.article_content;
             jQuery("#content").html(content);
         },"json");//表示返回数据的格式

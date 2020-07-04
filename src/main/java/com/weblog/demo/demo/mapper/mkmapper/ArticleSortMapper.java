@@ -26,10 +26,7 @@ public interface ArticleSortMapper {
      * @Param("cmt") 表示参数的别名，在sql语句中使用
      * @param addlab
      * @return
-     *  Map<String, String> map=new HashMap<>();
-     *  map.put("name","张老师");
-     *  map.put("sex","男");
-     *  map.put("no","10006");
+     *
      */
     @Insert("insert into article_sort(article_sort_id,article_sort_name)" +
             "value(#{artsort.id},#{artsort.name})")
@@ -48,7 +45,6 @@ public interface ArticleSortMapper {
 
 
     /*
-     * 注意这个方法还有一个bug未解决，当lable_id被其他表使用时，就不能成功删除
      *
      *
      * */

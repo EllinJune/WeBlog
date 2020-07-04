@@ -36,10 +36,7 @@ public interface ArticleSortSetMapper {
      * @Param("cmt") 表示参数的别名，在sql语句中使用
      * @param addlabset
      * @return
-     *  Map<String, String> map=new HashMap<>();
-     *  map.put("name","张老师");
-     *  map.put("sex","男");
-     *  map.put("no","10006");
+     *
      */
     @Insert("insert into article_sort_set(article_id,article_sort_id)" +
             "value(#{art.id},#{art.sortid})")

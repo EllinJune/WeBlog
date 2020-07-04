@@ -26,10 +26,7 @@ public interface CommentsMapper {
      * @Param("cmt") 表示参数的别名，在sql语句中使用
      * @param addcmt
      * @return
-     *  Map<String, String> map=new HashMap<>();
-     *  map.put("name","张老师");
-     *  map.put("sex","男");
-     *  map.put("no","10006");
+     *
      */
     @Insert("insert into comments(user_id,article_id,comment_like_count,comment_date,comment_content)" +
             "value(#{cmt.uid},#{cmt.artid},#{cmt.likecount},#{cmt.date},#{cmt.content})")

@@ -80,7 +80,7 @@
                 <a class="search-icon fl" onclick="m_search()" href="javascript:void(0);"></a>
             </span>
         </li>
-        <li><a class="w-h-100 fl" href="index.html">首页</a></li>
+        <li><a class="w-h-100 fl" href="index.html" id = "menu2">首页</a></li>
         <li><a class="w-h-100 fl" href="login.html">登录</a></li>
         <li><a class="w-h-100" href="register.html">注册</a></li>
         <li><a class="w-h-100 fl" href="album.html">相册</a></li>
@@ -337,10 +337,16 @@
                             div33.className = "article-detail-box c-666";
                             div33.id = "allart2" + count;
                             var a1 = document.createElement("a");
-                            a1.href = "article.html";
+                            a1.href = "article" +json.article_id + ".html";
                             a1.className = "article-img-box";
+                            //
+                            var img1=document.createElement("img");
+                            img1.className="lazy-image article-img";
+                            img1.src="blogdesktop.jpg";
+                            a1.appendChild(img1);
+                            //
                             var a2 = document.createElement("a");
-                            a2.href = "article.html";
+                            a2.href = "article" +json.article_id + ".html";
                             var a3 = document.createElement("a");
                             a3.id = "allartlab" + count;
                             var span = document.createElement("span");
@@ -378,6 +384,11 @@
                             document.getElementById("article-holder").appendChild(div1);
                             //jQuery("#" + "hotart" + jQuery("#article-holder").val()).text(json.article_title);
                             jQuery("#" + "allarttitle" + count).text(json.article_title);
+                            jQuery("#" + "allart2" + count).text(json.article_content);
+                            jQuery("#" + "allartlooknumber" + count).text(json.article_like_count);
+                            jQuery("#" + "allartcmtnumber" + count).text(json.article_comment_count);
+                            jQuery("#" + "allartdate" + count).text(json.article_date);
+                            jQuery("#" + "allartautor" + count).text("作者：" + getCookie("user_info"));
                         }
                     }
                 }
@@ -404,7 +415,7 @@
                             var json = rst[j];
                             var a = document.createElement("a");
                             a.id = "hotart" + jQuery("#like-box11").val();
-                            a.href = "article.html";
+                            a.href = "article" + json.article_id+ ".html";
                             var li = document.createElement("li");
                             li.className = "column-category";
                             li.appendChild(a);
@@ -542,10 +553,16 @@
                                  div33.className = "article-detail-box c-666";
                                  div33.id = "art" + count;
                                  var a1 = document.createElement("a");
-                                 a1.href = "article.html";
+                                 a1.href = "article" + rst.article_id +".html";
                                  a1.className = "article-img-box";
+                                 //
+                                 var img1=document.createElement("img");
+                                 img1.className="lazy-image article-img";
+                                 img1.src="blogdesktop.jpg";
+                                 a1.appendChild(img1);
+                                 //
                                  var a2 = document.createElement("a");
-                                 a2.href = "article.html";
+                                 a2.href = "article" + rst.article_id +".html";
                                  var a3 = document.createElement("a");
                                  a3.id = "lable" + count;
                                  var span = document.createElement("span");

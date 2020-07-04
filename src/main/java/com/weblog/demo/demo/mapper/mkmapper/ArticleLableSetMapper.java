@@ -22,16 +22,13 @@ public interface ArticleLableSetMapper {
 
     @Select("select * from article_lable_set where lable_id=#{n}")
     public List<Map<String,Object>> findByLabid(int labid);
-    //将来数据来自页面，都是string类型
 
     /**
      * @Param("cmt") 表示参数的别名，在sql语句中使用
      * @param addlabset
      * @return
-     *  Map<String, String> map=new HashMap<>();
-     *  map.put("name","张老师");
-     *  map.put("sex","男");
-     *  map.put("no","10006");
+     *
+     *
      */
     @Insert("insert into article_lable_set(article_id,lable_id)" +
             "value(#{artlab.artid},#{artlab.labid})")

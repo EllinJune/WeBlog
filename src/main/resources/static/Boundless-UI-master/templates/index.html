@@ -339,6 +339,12 @@
                             var a1 = document.createElement("a");
                             a1.href = "article" +json.article_id + ".html";
                             a1.className = "article-img-box";
+                            //
+                            var img1=document.createElement("img");
+                            img1.className="lazy-image article-img";
+                            img1.src="blogdesktop.jpg";
+                            a1.appendChild(img1);
+                            //
                             var a2 = document.createElement("a");
                             a2.href = "article" +json.article_id + ".html";
                             var a3 = document.createElement("a");
@@ -382,7 +388,7 @@
                             jQuery("#" + "allartlooknumber" + count).text(json.article_like_count);
                             jQuery("#" + "allartcmtnumber" + count).text(json.article_comment_count);
                             jQuery("#" + "allartdate" + count).text(json.article_date);
-                            jQuery("#" + "allartautor" + count).text("作者：" + getCookie("user_name"));
+                            jQuery("#" + "allartautor" + count).text("作者：" + getCookie("user_info"));
                         }
                     }
                 }
@@ -549,6 +555,12 @@
                                  var a1 = document.createElement("a");
                                  a1.href = "article" + rst.article_id +".html";
                                  a1.className = "article-img-box";
+                                 //
+                                 var img1=document.createElement("img");
+                                 img1.className="lazy-image article-img";
+                                 img1.src="blogdesktop.jpg";
+                                 a1.appendChild(img1);
+                                 //
                                  var a2 = document.createElement("a");
                                  a2.href = "article" + rst.article_id +".html";
                                  var a3 = document.createElement("a");

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/myPagination.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="shortcut icon" href="../img/user.jpeg">
-    <link href="/bootstrap-3.3.7-dist/css/boostrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <style rel="stylesheet">
         .lazy-image {
             background: url('../img/loading.gif') no-repeat center;
@@ -353,10 +353,10 @@
                             div33.className = "article-detail-box c-666";
                             div33.id = "allart2" + count;
                             var a1 = document.createElement("a");
-                            a1.href = "article.html";
+                            a1.href = "article" +json.article_id + ".html";
                             a1.className = "article-img-box";
                             var a2 = document.createElement("a");
-                            a2.href = "article.html";
+                            a2.href = "article" +json.article_id + ".html";
                             var a3 = document.createElement("a");
                             a3.id = "allartlab" + count;
                             var span = document.createElement("span");
@@ -394,6 +394,11 @@
                             document.getElementById("article-holder").appendChild(div1);
                             //jQuery("#" + "hotart" + jQuery("#article-holder").val()).text(json.article_title);
                             jQuery("#" + "allarttitle" + count).text(json.article_title);
+                            jQuery("#" + "allart2" + count).text(json.article_content);
+                            jQuery("#" + "allartlooknumber" + count).text(json.article_like_count);
+                            jQuery("#" + "allartcmtnumber" + count).text(json.article_comment_count);
+                            jQuery("#" + "allartdate" + count).text(json.article_date);
+                            jQuery("#" + "allartautor" + count).text("作者：" + getCookie("user_name"));
                         }
                     }
                 }
@@ -420,7 +425,7 @@
                             var json = rst[j];
                             var a = document.createElement("a");
                             a.id = "hotart" + jQuery("#like-box11").val();
-                            a.href = "article.html";
+                            a.href = "article" + json.article_id+ ".html";
                             var li = document.createElement("li");
                             li.className = "column-category";
                             li.appendChild(a);
@@ -558,10 +563,10 @@
                                  div33.className = "article-detail-box c-666";
                                  div33.id = "art" + count;
                                  var a1 = document.createElement("a");
-                                 a1.href = "article.html";
+                                 a1.href = "article" + rst.article_id +".html";
                                  a1.className = "article-img-box";
                                  var a2 = document.createElement("a");
-                                 a2.href = "article.html";
+                                 a2.href = "article" + rst.article_id +".html";
                                  var a3 = document.createElement("a");
                                  a3.id = "lable" + count;
                                  var span = document.createElement("span");

@@ -18,6 +18,11 @@ public class PhotoController {
 
     //创建相册、改相册名、删除相册、显示该相册下所有图片
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/album")
     public List<Map<String,Object>> album(@RequestParam Map<String,String> map){
         List<Map<String,Object>> list=null;
@@ -30,6 +35,11 @@ public class PhotoController {
         return list;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/createAlbum")
     public String createAlbum(@RequestParam Map<String,String> map)
     {
@@ -45,6 +55,11 @@ public class PhotoController {
         return msg;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/updateAlbum")
     public String updateAlbum(@RequestParam Map<String,String> map)
     {
@@ -59,6 +74,11 @@ public class PhotoController {
         return msg;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/deleteAlbum")
     public String deleteAlbum(@RequestParam Map<String,String> map)
     {
@@ -73,6 +93,11 @@ public class PhotoController {
         return msg;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/show")
     public List<Map<String,Object>> show(@RequestParam Map<String,String> map)
     {
@@ -89,6 +114,13 @@ public class PhotoController {
     }
 
     //上传图片、删除图片
+
+    /**
+     *
+     * @param file
+     * @param map
+     * @return
+     */
     @RequestMapping("/upPhoto")
     public String upPhoto(MultipartFile file, @RequestParam Map<String, String> map)
     {
@@ -112,6 +144,11 @@ public class PhotoController {
         return msg;
     }
 
+    /**
+     *
+     * @param map
+     * @return
+     */
     @RequestMapping("/deletePhoto")
     public String deletePhoto(@RequestParam Map<String,String> map)
     {
